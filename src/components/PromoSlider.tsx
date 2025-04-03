@@ -41,7 +41,7 @@ const PromoSlider = () => {
             <img
               src={`/sneakers/sneaker-${index + 1}.png`}
               alt=""
-              className="w-12 lg:w-16"
+              className="w-12 select-none xl:w-16"
             />
           </button>
         ))}
