@@ -1,1 +1,9 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-opensans: 'Open Sans', sans-serif;
+  --font-bask: 'Baskervville', serif;
+  --color-primary: #d90429;
+  --color-secondary: rgba(0, 0, 0, 0.65);
+}

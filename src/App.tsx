@@ -4,13 +4,13 @@ import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ItemPage from './pages/ItemPage';
+import Catalog from './pages/Catalog';
 
 function App() {
   return (
     <Routes>
-      {['/', '/catalog'].map((path) => (
-        <Route path={path} element={<Home />} />
-      ))}
+      <Route index element={<Home />} />
+      <Route path="/catalog" element={<Catalog />} />
       <Route path="/catalog/:id" index element={<ItemPage />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/favorites" element={<Favorites />} />
