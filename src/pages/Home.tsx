@@ -5,6 +5,7 @@ import HomePromoWrapper from '../components/wrappers/HomePromoWrapper';
 import PromoSlider from '../components/PromoSlider';
 import NewArrivalsSection from '../components/NewArrivalsSection';
 import SloganSection from '../components/SloganSection';
+import HomeFooter from '../components/HomeFooter';
 
 const Home = () => {
   return (
@@ -20,6 +21,9 @@ const Home = () => {
         <div className="mt-24">
           <SloganSection />
         </div>
+      </ContentWrapper>
+      <ContentWrapper isMain={false} className="mt-32">
+        <HomeFooter />
       </ContentWrapper>
     </PageWrapper>
   );
