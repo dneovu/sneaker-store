@@ -13,7 +13,7 @@ const PromoSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="relative">
+    <div className="relative px-8 py-4 md:pr-16 md:pl-16 lg:pl-32">
       <div className="overflow-hidden">
         <div
           className="flex w-full transition-transform duration-500 ease-in-out"

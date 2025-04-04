@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const PromoSliderItem = ({ index }: { index: number }) => {
   return (
     <section className="flex justify-between">
-      <div className="mr-8 flex w-3/7 flex-col pl-1">
+      <div className="mr-8 flex flex-col pt-6 pl-1 xl:w-4/7">
         <div className="flex flex-1 flex-col justify-center">
           <h2 className="font-bask mb-7 text-5xl font-semibold xl:text-7xl">
             Puma {index}
@@ -24,8 +24,8 @@ const PromoSliderItem = ({ index }: { index: number }) => {
         </Link>
       </div>
 
-      <div className="flex items-center justify-center">
-        <div className="mr-12 flex size-80 items-center justify-center rounded-full bg-gradient-to-br from-[#EFEEF5] to-[#F3E7E9] xl:mr-52 xl:size-[464px]">
+      <div className="flex w-full items-center justify-center">
+        <div className="flex size-80 items-center justify-center rounded-full bg-gradient-to-br from-[#EFEEF5] to-[#F3E7E9] xl:size-[464px]">
           <img
             src={`/sneakers/sneaker-${index}.png`}
             alt={`Sneaker ${index}`}
