@@ -1,23 +1,23 @@
 import { Link } from 'react-router-dom';
+import { Sneaker } from '../types/sneaker';
+import priceFormat from '../utils/priceFormat';
 
-interface SneakerCardProps {
-  id: number;
-}
-
-const SneakerCard: React.FC<SneakerCardProps> = ({ id }) => {
+const SneakerCard = ({ item }: { item: Sneaker }) => {
   return (
     <article className="group cursor-pointer space-y-6">
-      <Link to={`/catalog/${id}`}>
+      <Link to={`/catalog/${item.id}`}>
         <div className="bg-background group-hover:border-background mb-6 flex size-78 items-center justify-center rounded-md border-4 border-white p-2 transition-all">
           <img
-            src={`/sneakers/sneaker-${id}.png`}
-            alt=""
+            src={item.imgSrc}
+            alt={`${item.brand} ${item.model}`}
             className="select-none"
           />
         </div>
         <div className="space-y-2 px-2 font-medium">
-          <p>Puma Running SX</p>
-          <p className="text-secondary">10,000 ₽</p>
+          <p>
+            {item.brand} {item.model}
+          </p>
+          <p className="text-secondary">{priceFormat(item.price)}</p>
         </div>
       </Link>
     </article>

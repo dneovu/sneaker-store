@@ -6,16 +6,32 @@ import PromoSlider from '../components/PromoSlider';
 import NewArrivalsSection from '../components/NewArrivalsSection';
 import SloganSection from '../components/SloganSection';
 import HomeFooter from '../components/HomeFooter';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { fetchSneakers } from '../store/sneakersSlice';
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+  const { items, loading } = useAppSelector((state) => state.sneakers);
+
+  useEffect(() => {
+    if (!items.length) {
+      dispatch(fetchSneakers());
+    }
+  }, [dispatch, items.length]);
+
+  if (loading) {
+    return;
+  }
+
   return (
     <PageWrapper>
       <HomePromoWrapper>
         <Header isBorder={false} />
-        <PromoSlider />
+        <PromoSlider items={items} />
       </HomePromoWrapper>
       <ContentWrapper>
-        <div className="mt-6 xl:mt-20">
+        <div className="mt-8 xl:mt-24">
           <NewArrivalsSection />
         </div>
         <div className="mt-24">

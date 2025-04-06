@@ -9,14 +9,14 @@ const HomeFooter = () => {
     <footer className="border-t-1 border-gray-300 pt-16">
       <CompanyLogoLink />
       <p className="text-secondary mt-8 max-w-[580px]">
-        We don&rsquo;t just sell shoes, we sell memories and collectibles. We
-        collect the best in the best with an attention to all little details. we
-        know that shoes speaks louder than words that&rsquo;s why we&rsquo;ve
-        mastered the science of good sneakers.
+        Мы не просто продаем обувь, мы продаем воспоминания и предметы
+        коллекционирования. Мы собираем лучшее из лучшего, уделяя внимание всем
+        мелким деталям. Мы знаем, что обувь говорит громче слов, поэтому мы
+        освоили науку хороших кроссовок.
       </p>
       <div className="text-secondary mt-14 flex flex-wrap justify-between gap-6">
         <div className="flex gap-3">
-          <p>Don&rsquo;t missout on once-in-a-while-deals:</p>
+          <p>Не упускайте шанса получить выгодные предложения:</p>
           <nav aria-label="Social media links">
             <ul className="flex gap-3">
               <li className="bg-background size-8 rounded-lg">
@@ -53,7 +53,7 @@ const HomeFooter = () => {
           </nav>
         </div>
         <div className="flex gap-2">
-          <p>Support line:</p>
+          <p>Линия поддержки:</p>
           <a href="tel:+250788467808">+250 788 467 808</a>
         </div>
         <p>Copyright 2025 © Sneaker City ltd</p>
