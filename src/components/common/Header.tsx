@@ -5,7 +5,12 @@ import FavsLogo from '../../assets/header/heart.svg?react';
 import ProfileLogo from '../../assets/header/profile.svg?react';
 import CompanyLogoLink from './CompanyLogoLink';
 
-const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
+interface HeaderProps {
+  isBorder?: boolean;
+  isCatalogPage?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ isBorder = true, isCatalogPage }) => {
   return (
     <header
       className={`flex items-center justify-between ${isBorder ? 'border-b-1 border-gray-300' : ''} px-8 py-4 md:px-16 md:py-6 lg:px-32`}
@@ -15,7 +20,7 @@ const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
       <div>
         <NavLink
           to="/catalog"
-          className="hover:text-primary text-lg font-semibold transition-all duration-100"
+          className={`hover:text-primary text-lg font-semibold transition-all duration-100 ${isCatalogPage ? 'text-primary' : ''}`}
         >
           Каталог
         </NavLink>

@@ -1,0 +1,39 @@
+import { useAppSelector } from '../hooks/redux';
+import { Sneaker } from '../types/sneaker';
+import SneakerCard from './SneakerCard';
+
+const CatalogSection = () => {
+  const { items } = useAppSelector((state) => state.sneakers);
+  const { filterBrands } = useAppSelector((state) => state.catalogFilter);
+
+  const shouldDisplay = (sneaker: Sneaker) => {
+    if (filterBrands.every((brand) => brand.isSelected === false)) {
+      return true;
+    }
+    const isBrandMatches = filterBrands.find(
+      (brand) => brand.name === sneaker.brand && brand.isSelected
+    );
+    // const isPriceMatches =
+    //   filterPrice.from <= sneaker.price && filterPrice.to >= sneaker.price;
+    // const isSizeMatches = filterSizes.find(
+    //   (size) => sneaker.sizes[size.value] > 0 && size.isSelected
+
+    return isBrandMatches;
+  };
+
+  const filteredData = items.filter((sneaker) => shouldDisplay(sneaker));
+  console.log(filteredData);
+
+  return (
+    <section className="w-full">
+      <h1 className="text-lg font-bold md:text-2xl">Все кроссовки</h1>
+      <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-x-1 gap-y-4 md:mt-8 md:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] md:gap-y-16">
+        {filteredData.map((sneaker) => (
+          <SneakerCard key={sneaker.id} item={sneaker} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default CatalogSection;

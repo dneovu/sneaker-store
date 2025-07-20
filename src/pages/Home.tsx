@@ -9,6 +9,7 @@ import HomeFooter from '../components/HomeFooter';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { fetchSneakers } from '../store/sneakersSlice';
+import { addSneakers } from '../firebase/utils';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ const Home = () => {
         </div>
       </ContentWrapper>
       <ContentWrapper isMain={false} className="mt-32">
+        <button onClick={addSneakers}>Add sneakers</button>
         <HomeFooter />
       </ContentWrapper>
     </PageWrapper>

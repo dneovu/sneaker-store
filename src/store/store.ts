@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import sneakerReducer from '../store/sneakersSlice';
+import brandsReducer from '../store/brandsSlice';
+import catalogFilterReducer from '../store/catalogFilterSlice';
 
 export const store = configureStore({
   reducer: {
     sneakers: sneakerReducer,
+    brands: brandsReducer,
+    catalogFilter: catalogFilterReducer,
   },
 });
 

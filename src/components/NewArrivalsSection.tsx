@@ -9,7 +9,7 @@ const NewArrivalsSection = () => {
   return (
     <section className="space-y-8">
       <h3 className="text-xl font-bold">Новые поступления</h3>
-      <div className="display mb-8 grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] place-items-center gap-6">
+      <div className="mb-8 grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-x-1 gap-y-4 md:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] md:gap-y-12">
         {items.map((sneaker) => (
           <SneakerCard key={sneaker.id} item={sneaker} />
         ))}

@@ -4,9 +4,9 @@ import priceFormat from '../utils/priceFormat';
 
 const SneakerCard = ({ item }: { item: Sneaker }) => {
   return (
-    <article className="group cursor-pointer space-y-6">
+    <article className="group cursor-pointer">
       <Link to={`/catalog/${item.id}`}>
-        <div className="bg-background group-hover:border-background mb-6 flex size-78 items-center justify-center rounded-md border-4 border-white p-2 transition-all">
+        <div className="bg-background group-hover:border-background mb-2 flex size-39 items-center justify-center rounded-md border-4 border-white p-2 transition-all md:mb-6 md:size-78">
           <img
             src={item.imgSrc}
             alt={`${item.brand} ${item.model}`}
@@ -14,7 +14,7 @@ const SneakerCard = ({ item }: { item: Sneaker }) => {
           />
         </div>
         <div className="space-y-2 px-2 font-medium">
-          <p>
+          <p className="text-sm md:text-xl">
             {item.brand} {item.model}
           </p>
           <p className="text-secondary">{priceFormat(item.price)}</p>

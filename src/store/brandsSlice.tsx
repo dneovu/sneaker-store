@@ -1,43 +1,43 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllCollectionByName } from '../firebase/utils';
-import { Sneaker } from '../types/sneaker';
+import { Brand } from '../types/brand';
 
-interface SneakerState {
-  items: Sneaker[];
+interface BrandState {
+  items: Brand[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: SneakerState = {
+const initialState: BrandState = {
   items: [],
   loading: false,
   error: null,
 };
 
-export const fetchSneakers = createAsyncThunk<Sneaker[]>(
-  'sneakers/fetchSneakers',
-  () => getAllCollectionByName('sneakers') as Promise<Sneaker[]>
+export const fetchBrands = createAsyncThunk<Brand[]>(
+  'brands/fetchBrands',
+  () => getAllCollectionByName('brands') as Promise<Brand[]>
 );
 
-const sneakersSlice = createSlice({
-  name: 'sneakers',
+const brandsSlice = createSlice({
+  name: 'brands',
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchSneakers.pending, (state) => {
+      .addCase(fetchBrands.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchSneakers.fulfilled, (state, action) => {
+      .addCase(fetchBrands.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchSneakers.rejected, (state, action) => {
+      .addCase(fetchBrands.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Something went wrong';
       });
   },
 });
 
-export default sneakersSlice.reducer;
+export default brandsSlice.reducer;
