@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllCollectionByName } from '../firebase/utils';
-import { Size } from '../types/size';
+import { Size } from '../types/meta';
 
 interface SizeState {
   items: Size[];

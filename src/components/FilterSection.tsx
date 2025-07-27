@@ -7,9 +7,12 @@ import {
   SizesFilterState,
   changeChoosenBrand,
   changeChoosenSize,
+  changePrice,
   createSelectedBrands,
   createSelectedSizes,
 } from '../store/catalogFilterSlice';
+import RangeInput from './RangeInput';
+import { fetchPriceRange } from '../store/priceRangeSlice';
 
 const FilterSection = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +21,9 @@ const FilterSection = () => {
   );
   const { items: sizeItems, loading: loadingSizes } = useAppSelector(
     (state) => state.sizes
+  );
+  const { items: priceRange, loading: loadingPrices } = useAppSelector(
+    (state) => state.priceRange
   );
   const { filterBrands, filterSizes } = useAppSelector(
     (state) => state.catalogFilter
@@ -35,9 +41,15 @@ const FilterSection = () => {
     } else {
       dispatch(createSelectedSizes(sizeItems));
     }
-  }, [dispatch, brandItems, sizeItems]);
 
-  if (loadingBrands || loadingSizes) return;
+    if (!priceRange) {
+      dispatch(fetchPriceRange());
+    } else {
+      dispatch(changePrice(priceRange));
+    }
+  }, [dispatch, brandItems, sizeItems, priceRange]);
+
+  if (loadingBrands || loadingSizes || loadingPrices) return;
 
   return (
     <section className="w-[302px] lg:block">
@@ -63,6 +75,10 @@ const FilterSection = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <h2 className="mb-4 text-sm font-bold md:text-lg">Стоимость</h2>
+        <RangeInput priceRange={priceRange} />
       </div>
       <div>
         <h2 className="mb-4 text-sm font-bold md:text-lg">Размеры</h2>

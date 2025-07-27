@@ -8,6 +8,6 @@ export type Sneaker = {
   imgSrc: string;
   price: number;
   sizes: Record<number, number>;
-  isPromo?: boolean;
+  promo?: boolean;
   isNew?: boolean;
 };

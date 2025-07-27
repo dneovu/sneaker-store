@@ -1,7 +1,16 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
 import { firebaseConfig } from './config';
 import { Sneaker } from '../types/sneaker';
+import { PriceRange } from '../types/meta';
+// import { MetaSneakers } from '../types/meta';
 
 const app = initializeApp(firebaseConfig);
 
@@ -35,6 +44,15 @@ export const getAllCollectionByName = async (collectionName: string) => {
   }));
 };
 
+export const getPriceRange = async (): Promise<PriceRange> => {
+  const ref = doc(db, 'price', 'priceRange');
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) throw new Error('Meta document not found');
+  return { id: snap.id, ...snap.data() } as PriceRange;
+};
+
+// for test
 type SneakerToAdd = Omit<Sneaker, 'id'>;
 
 export const addSneaker = async (sneaker: SneakerToAdd) => {

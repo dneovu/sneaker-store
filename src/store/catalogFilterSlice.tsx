@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Brand } from '../types/brand';
-import { Size } from '../types/size';
-
-type PriceFilterState = {
-  from: number;
-  to: number;
-};
+import { Brand, Size, PriceRange } from '../types/meta';
 
 export type BrandsFilterState = Brand & {
   isSelected: boolean;
@@ -17,15 +11,15 @@ export type SizesFilterState = Size & {
 
 interface CatalogFilterState {
   filterBrands: BrandsFilterState[];
-  filterPrice: PriceFilterState;
+  filterPrice: PriceRange;
   filterSizes: SizesFilterState[];
 }
 
 const initialState: CatalogFilterState = {
   filterBrands: [],
   filterPrice: {
-    from: 0,
-    to: 100000,
+    min: 0,
+    max: 43000,
   },
   filterSizes: [],
 };
@@ -52,7 +46,7 @@ export const catalogFilterSlice = createSlice({
         return size;
       });
     },
-    changePrice: (state, action: PayloadAction<PriceFilterState>) => {
+    changePrice: (state, action: PayloadAction<PriceRange>) => {
       const price = action.payload;
       state.filterPrice = price;
     },

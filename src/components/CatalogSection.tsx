@@ -4,21 +4,21 @@ import SneakerCard from './SneakerCard';
 
 const CatalogSection = () => {
   const { items } = useAppSelector((state) => state.sneakers);
-  const { filterBrands, filterSizes } = useAppSelector(
+  const { filterBrands, filterSizes, filterPrice } = useAppSelector(
     (state) => state.catalogFilter
   );
 
   const shouldDisplay = (sneaker: Sneaker) => {
+    if (!filterPrice) return;
+
     // if nothing choosen returns true
     const isBrandMatches =
       filterBrands.find(
         (brand) => brand.name === sneaker.brand && brand.isSelected
       ) || filterBrands.every((brand) => brand.isSelected === false);
 
-    // const isPriceMatches =
-    //   filterPrice.from <= sneaker.price && filterPrice.to >= sneaker.price;
-    // const isSizeMatches = filterSizes.find(
-    //   (size) => sneaker.sizes[size.value] > 0 && size.isSelected
+    const isPriceMatches =
+      filterPrice.min <= sneaker.price && filterPrice.max >= sneaker.price;
 
     const isSizeMatches =
       filterSizes.find(
@@ -28,7 +28,7 @@ const CatalogSection = () => {
           size.isSelected
       ) || filterSizes.every((size) => size.isSelected === false);
 
-    return isBrandMatches && isSizeMatches;
+    return isBrandMatches && isSizeMatches && isPriceMatches;
   };
 
   const filteredData = items.filter((sneaker) => shouldDisplay(sneaker));

@@ -10,6 +10,7 @@ import { Sneaker } from '../types/sneaker';
 
 const PromoSlider = ({ items }: { items: Sneaker[] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const promoItems = items.filter((sneaker) => sneaker.promo);
 
   return (
     <div className="relative px-8 py-4 md:pr-16 md:pl-16 lg:pl-32">
@@ -18,7 +19,7 @@ const PromoSlider = ({ items }: { items: Sneaker[] }) => {
           className="flex w-full transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
-          {items.map((sneaker) => (
+          {promoItems.map((sneaker) => (
             <div key={sneaker.id} className="w-full flex-shrink-0">
               <PromoSliderItem item={sneaker} />
             </div>
@@ -27,7 +28,7 @@ const PromoSlider = ({ items }: { items: Sneaker[] }) => {
       </div>
 
       <div className="mt-6 flex justify-end space-x-5">
-        {items.map((sneaker, index) => (
+        {promoItems.map((sneaker, index) => (
           <button
             key={sneaker.id}
             className={`cursor-pointer rounded-lg border-4 border-white bg-white px-3 py-2 transition-all ${
