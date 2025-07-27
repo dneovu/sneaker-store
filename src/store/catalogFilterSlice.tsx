@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Brand } from '../types/brand';
+import { Size } from '../types/size';
 
 type PriceFilterState = {
   from: number;
@@ -10,8 +11,7 @@ export type BrandsFilterState = Brand & {
   isSelected: boolean;
 };
 
-type SizesFilterState = {
-  value: number;
+export type SizesFilterState = Size & {
   isSelected: boolean;
 };
 
@@ -43,6 +43,15 @@ export const catalogFilterSlice = createSlice({
         return brand;
       });
     },
+    changeChoosenSize: (state, action: PayloadAction<string>) => {
+      const sizeId = action.payload;
+      state.filterSizes = state.filterSizes.map((size) => {
+        if (size.id === sizeId) {
+          size.isSelected = !size.isSelected;
+        }
+        return size;
+      });
+    },
     changePrice: (state, action: PayloadAction<PriceFilterState>) => {
       const price = action.payload;
       state.filterPrice = price;
@@ -63,14 +72,22 @@ export const catalogFilterSlice = createSlice({
         isSelected: false,
       }));
     },
+    createSelectedSizes: (state, action: PayloadAction<Size[]>) => {
+      const sizes = action.payload;
+      state.filterSizes = sizes.map((size) => ({
+        ...size,
+        isSelected: false,
+      }));
+    },
   },
 });
 
 export const {
   changeChoosenBrand,
-  changeSelectedSize,
+  changeChoosenSize,
   changePrice,
   createSelectedBrands,
+  createSelectedSizes,
 } = catalogFilterSlice.actions;
 
 export default catalogFilterSlice.reducer;

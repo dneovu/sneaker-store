@@ -1,26 +1,43 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { fetchBrands } from '../store/brandsSlice';
+import { fetchSizes } from '../store/sizesSlice';
 import {
   BrandsFilterState,
+  SizesFilterState,
   changeChoosenBrand,
+  changeChoosenSize,
   createSelectedBrands,
+  createSelectedSizes,
 } from '../store/catalogFilterSlice';
 
 const FilterSection = () => {
   const dispatch = useAppDispatch();
-  const { items, loading } = useAppSelector((state) => state.brands);
-  const { filterBrands } = useAppSelector((state) => state.catalogFilter);
+  const { items: brandItems, loading: loadingBrands } = useAppSelector(
+    (state) => state.brands
+  );
+  const { items: sizeItems, loading: loadingSizes } = useAppSelector(
+    (state) => state.sizes
+  );
+  const { filterBrands, filterSizes } = useAppSelector(
+    (state) => state.catalogFilter
+  );
 
   useEffect(() => {
-    if (!items.length) {
+    if (!brandItems.length) {
       dispatch(fetchBrands());
     } else {
-      dispatch(createSelectedBrands(items));
+      dispatch(createSelectedBrands(brandItems));
     }
-  }, [dispatch, items]);
 
-  if (loading) return;
+    if (!sizeItems.length) {
+      dispatch(fetchSizes());
+    } else {
+      dispatch(createSelectedSizes(sizeItems));
+    }
+  }, [dispatch, brandItems, sizeItems]);
+
+  if (loadingBrands || loadingSizes) return;
 
   return (
     <section className="w-[302px] lg:block">
@@ -42,6 +59,29 @@ const FilterSection = () => {
                 htmlFor={brand.id}
               >
                 {brand.name}
+              </label>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 className="mb-4 text-sm font-bold md:text-lg">Размеры</h2>
+        <ul>
+          {filterSizes.map((size: SizesFilterState) => (
+            <li className="space-y-3.5 space-x-3" key={size.id}>
+              <input
+                type="checkbox"
+                name="brand"
+                id={size.id}
+                value={size.id}
+                onChange={() => dispatch(changeChoosenSize(size.id))}
+                checked={size.isSelected}
+              />
+              <label
+                className="text-secondary text-sm font-bold select-none"
+                htmlFor={size.id}
+              >
+                {size.value}
               </label>
             </li>
           ))}

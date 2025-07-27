@@ -1,3 +1,5 @@
+// TODO: change types
+
 export type Sneaker = {
   id: string;
   brand: string;
