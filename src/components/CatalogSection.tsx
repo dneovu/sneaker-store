@@ -1,6 +1,6 @@
 import { useAppSelector } from '../hooks/redux';
 import { Sneaker } from '../types/sneaker';
-import SneakerCard from './SneakerCard';
+import SneakerCard from './common/SneakerCard';
 
 const CatalogSection = () => {
   const { items } = useAppSelector((state) => state.sneakers);

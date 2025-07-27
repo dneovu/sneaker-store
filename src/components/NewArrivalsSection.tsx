@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import SneakerCard from './SneakerCard';
+import SneakerCard from './common/SneakerCard';
 import NextArrow from '../assets/next.svg?react';
 import { useAppSelector } from '../hooks/redux';
 

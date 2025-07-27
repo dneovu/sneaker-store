@@ -5,7 +5,7 @@ import PageWrapper from '../components/wrappers/PageWrapper';
 import Header from '../components/common/Header';
 import ContentWrapper from '../components/wrappers/ContentWrapper';
 import CatalogSection from '../components/CatalogSection';
-import FilterSection from '../components/FilterSection';
+import FilterSection from '../components/FilterSection/FilterSection';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
