@@ -52,6 +52,14 @@ export const getPriceRange = async (): Promise<PriceRange> => {
   return { id: snap.id, ...snap.data() } as PriceRange;
 };
 
+export const getSneakerById = async (id: string): Promise<Sneaker> => {
+  const ref = doc(db, 'sneakers', id);
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) throw new Error('Sneaker not found');
+  return { id: snap.id, ...snap.data() } as Sneaker;
+};
+
 // for test
 type SneakerToAdd = Omit<Sneaker, 'id'>;
 

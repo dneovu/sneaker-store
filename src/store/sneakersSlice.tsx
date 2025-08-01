@@ -1,15 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllCollectionByName } from '../firebase/utils';
+import { getAllCollectionByName, getSneakerById } from '../firebase/utils';
 import { Sneaker } from '../types/sneaker';
 
 interface SneakerState {
   items: Sneaker[];
+  currentSneaker: Sneaker | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: SneakerState = {
   items: [],
+  currentSneaker: null,
   loading: false,
   error: null,
 };
@@ -17,6 +19,11 @@ const initialState: SneakerState = {
 export const fetchSneakers = createAsyncThunk<Sneaker[]>(
   'sneakers/fetchSneakers',
   () => getAllCollectionByName('sneakers') as Promise<Sneaker[]>
+);
+
+export const fetchSneakerById = createAsyncThunk<Sneaker, string>(
+  'sneakers/fetchSneakerById',
+  (id: string) => getSneakerById(id) as Promise<Sneaker>
 );
 
 const sneakersSlice = createSlice({
@@ -35,7 +42,20 @@ const sneakersSlice = createSlice({
       })
       .addCase(fetchSneakers.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Something went wrong';
+        state.error = action.error.message || 'Failed to fetch sneakers';
+      })
+      .addCase(fetchSneakerById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.currentSneaker = null;
+      })
+      .addCase(fetchSneakerById.fulfilled, (state, action) => {
+        state.currentSneaker = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchSneakerById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to fetch current sneaker';
       });
   },
 });
