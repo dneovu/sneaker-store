@@ -3,6 +3,7 @@ import {
   changeChoosenSize,
   SizesFilterState,
 } from '../../store/catalogFilterSlice';
+import SizeButton from '../common/SizeButton';
 
 interface SizeFilterProps {
   filterSizes: SizesFilterState[];
@@ -12,23 +13,13 @@ const SizeFilter = ({ filterSizes }: SizeFilterProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <ul>
+    <ul className="grid grid-cols-4 gap-3">
       {filterSizes.map((size: SizesFilterState) => (
         <li className="space-y-3.5 space-x-3" key={size.id}>
-          <input
-            type="checkbox"
-            name="brand"
-            id={size.id}
-            value={size.id}
+          <SizeButton
+            size={size}
             onChange={() => dispatch(changeChoosenSize(size.id))}
-            checked={size.isSelected}
           />
-          <label
-            className="text-secondary text-sm font-bold select-none"
-            htmlFor={size.id}
-          >
-            {size.value}
-          </label>
         </li>
       ))}
     </ul>
