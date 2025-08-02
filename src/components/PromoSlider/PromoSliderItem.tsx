@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Sneaker } from '../../types/sneaker';
 import priceFormat from '../../utils/priceFormat';
+import MainButton from '../common/MainButton';
 
 const PromoSliderItem = ({ item }: { item: Sneaker }) => {
   return (
@@ -14,11 +15,8 @@ const PromoSliderItem = ({ item }: { item: Sneaker }) => {
           <p className="mb-16 text-2xl font-bold">{priceFormat(item.price)}</p>
         </div>
 
-        <Link
-          to={`/catalog/${item.id}`}
-          className="bg-primary w-fit cursor-pointer px-6 py-2.5 font-bold text-white transition-all hover:shadow-lg hover:brightness-110"
-        >
-          К товару
+        <Link to={`/catalog/${item.id}`}>
+          <MainButton text="К товару" />
         </Link>
       </div>
 
