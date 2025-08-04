@@ -4,9 +4,8 @@ import { useEffect } from 'react';
 import { fetchSneakerById } from '../store/sneakersSlice';
 import PageWrapper from '../components/wrappers/PageWrapper';
 import Header from '../components/common/Header';
-import ContentWrapper from '../components/wrappers/ContentWrapper';
-import ItemSliderItem from '../components/ItemPage/ItemSlider/ItemSliderItem';
 import ItemInfoSection from '../components/ItemPage/ItemInfoSection';
+import ItemSlider from '../components/ItemPage/ItemSlider';
 
 const ItemPage = () => {
   const { id } = useParams();
@@ -27,16 +26,16 @@ const ItemPage = () => {
   return (
     <PageWrapper>
       <Header />
-      <ContentWrapper>
-        <div className="flex w-full">
-          <div className="flex-2/3">
-            <ItemSliderItem sneaker={currentSneaker} />
+      <main className="lg:pr-8">
+        <div className="flex w-full flex-wrap gap-8 lg:flex-nowrap lg:gap-16">
+          <div className="flex-7/10">
+            <ItemSlider sneaker={currentSneaker} />
           </div>
-          <div className="flex-1/3">
+          <div className="flex-3/10">
             <ItemInfoSection sneaker={currentSneaker} />
           </div>
         </div>
-      </ContentWrapper>
+      </main>
     </PageWrapper>
   );
 };

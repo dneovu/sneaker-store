@@ -29,7 +29,7 @@ const ItemInfoSection = ({ sneaker }: ItemInfoSectionProps) => {
   }, [choosenSizeId]);
 
   return (
-    <section className="py-8 pl-16">
+    <section className="px-8 py-4 lg:px-0 lg:py-8">
       <div className="space-y-4.5 border-b border-gray-300 pb-8">
         <h2 className="font-medium">Описание</h2>
         <p className="text-secondary text-justify">{sneaker.description}</p>
@@ -38,7 +38,7 @@ const ItemInfoSection = ({ sneaker }: ItemInfoSectionProps) => {
         <h2 className="font-medium">Выбор размера</h2>
         <ChooseSize sizes={sizesToChoose} setChoosenSizeId={setChoosenSizeId} />
       </div>
-      <div className="mt-30">
+      <div className="mt-16 lg:mt-30">
         <AddItemToCart sizeId={choosenSizeId} sizes={sizesToChoose} />
       </div>
     </section>

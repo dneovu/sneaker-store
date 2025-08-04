@@ -13,7 +13,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isBorder = true, isCatalogPage }) => {
   return (
     <header
-      className={`flex items-center justify-between ${isBorder ? 'border-b-1 border-gray-300' : ''} px-8 py-4 md:px-16 md:py-6 lg:px-32`}
+      className={`flex items-center justify-between ${isBorder ? 'border-b-1 border-gray-300' : ''} max-w-[1440px] px-8 py-4 md:py-6 lg:px-16`}
     >
       <CompanyLogoLink />
 

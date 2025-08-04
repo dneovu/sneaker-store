@@ -10,4 +10,5 @@ export type Sneaker = {
   sizes: Record<number, number>;
   promo?: boolean;
   isNew?: boolean;
+  altImg?: string[];
 };
