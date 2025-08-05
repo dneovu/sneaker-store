@@ -21,7 +21,7 @@ const Catalog = () => {
 
   return (
     <PageWrapper>
-      <Header isCatalogPage />
+      <Header />
       <ContentWrapper>
         <div className="flex gap-16 xl:mt-2">
           <FilterSection />

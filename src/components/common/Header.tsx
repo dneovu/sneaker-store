@@ -1,25 +1,28 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import CartLogo from '../../assets/header/shopping-cart.svg?react';
 import ProfileLogo from '../../assets/header/profile.svg?react';
 import CompanyLogoLink from './CompanyLogoLink';
 
-interface HeaderProps {
-  isBorder?: boolean;
-  isCatalogPage?: boolean;
-}
+const Header = () => {
+  const { pathname } = useLocation();
 
-const Header: React.FC<HeaderProps> = ({ isBorder = true, isCatalogPage }) => {
+  const routeFlags = {
+    isCatalogPage: pathname === '/catalog',
+    isCartPage: pathname === '/cart',
+    isProfilePage: pathname === '/profile',
+    isHomePage: pathname === '/',
+  };
+
   return (
     <header
-      className={`flex items-center justify-between ${isBorder ? 'border-b-1 border-gray-300' : ''} max-w-[1440px] px-8 py-4 md:py-6 lg:px-16`}
+      className={`flex items-center justify-between ${!routeFlags.isHomePage ? 'border-b-1 border-gray-300' : ''} max-w-[1440px] px-8 py-4 md:py-6 lg:px-16`}
     >
       <CompanyLogoLink />
-
       <div>
         <NavLink
           to="/catalog"
-          className={`hover:text-primary text-lg font-semibold transition-all duration-100 ${isCatalogPage ? 'text-primary' : ''}`}
+          className={`hover:text-primary text-lg font-semibold transition-all duration-100 ${routeFlags.isCatalogPage ? 'text-primary' : ''}`}
         >
           Каталог
         </NavLink>
@@ -27,10 +30,14 @@ const Header: React.FC<HeaderProps> = ({ isBorder = true, isCatalogPage }) => {
 
       <nav className="flex items-center gap-8">
         <NavLink to="/cart" aria-label="Корзина">
-          <CartLogo className="hover:stroke-primary fill-none stroke-black transition-all duration-100" />
+          <CartLogo
+            className={`fill-none transition-all duration-100 ${routeFlags.isCartPage ? 'stroke-primary' : 'hover:stroke-primary stroke-black'}`}
+          />
         </NavLink>
         <NavLink to="/profile" aria-label="Профиль">
-          <ProfileLogo className="hover:stroke-primary fill-none stroke-black transition-all duration-100" />
+          <ProfileLogo
+            className={`fill-none transition-all duration-100 ${routeFlags.isProfilePage ? 'stroke-primary' : 'hover:stroke-primary stroke-black'}`}
+          />
         </NavLink>
       </nav>
     </header>

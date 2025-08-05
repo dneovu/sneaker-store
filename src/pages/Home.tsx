@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <PageWrapper>
       <HomePromoWrapper>
-        <Header isBorder={false} />
+        <Header />
         <PromoSlider items={items} />
       </HomePromoWrapper>
       <ContentWrapper>
