@@ -39,8 +39,8 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
   if (!sneaker) return 'Не удалось загрузить';
 
   return (
-    <div className="bg-background relative flex items-center justify-between px-4 py-2 md:px-8 md:py-6">
-      <div className="flex items-center justify-center gap-6">
+    <div className="bg-background relative flex flex-col items-baseline justify-baseline gap-5 px-4 py-3 md:flex-row md:items-center md:justify-between md:gap-0 md:px-8 md:py-6">
+      <div className="flex w-full justify-between gap-4 md:w-auto md:items-center md:justify-center md:gap-6">
         <div
           className={`size-fit rounded-lg border-4 border-white bg-white px-3 py-2`}
         >
@@ -51,22 +51,25 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
           />
         </div>
         <div>
-          <p className="font-medium">
+          <p className="text-right font-medium md:text-left">
             {sneaker.brand} {sneaker.model}
           </p>
-          <p className="text-secondary font-medium">
+          <p className="text-secondary text-right font-medium md:text-left">
             {priceFormat(sneaker.price)}
           </p>
-          <p className="text-secondary font-medium">Размер: {item.size}</p>
+          <p className="text-secondary text-right font-medium md:text-left">
+            Размер: {item.size}
+          </p>
         </div>
       </div>
-      <div>
-        <QuantitiyCounter quantity={counter} onClick={handleCounter} />
+      <div className="flex w-full items-center justify-between md:w-2/5">
+        <div>
+          <QuantitiyCounter quantity={counter} onClick={handleCounter} />
+        </div>
+        <p className="font-medium">
+          {priceFormat(item.quantity * sneaker.price)}
+        </p>
       </div>
-
-      <p className="font-medium">
-        {priceFormat(item.quantity * sneaker.price)}
-      </p>
     </div>
   );
 };

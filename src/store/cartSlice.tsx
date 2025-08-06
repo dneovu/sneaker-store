@@ -43,9 +43,13 @@ const cartSlice = createSlice({
       if (type === 'dec' && cartItem.size > 1) cartItem.quantity -= 1;
       else if (type === 'inc') cartItem.quantity += 1;
     },
+    proceedCheckout: (state) => {
+      state.items = [];
+    },
   },
 });
 
-export const { addToCart, removeFromCart, changeQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, changeQuantity, proceedCheckout } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
