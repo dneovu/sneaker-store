@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import MainButton from '../common/MainButton';
-import { SizesFilterState } from '../../store/catalogFilterSlice';
-import { addToCart, CartItem } from '../../store/cartSlice';
-import { Sneaker } from '../../types/sneaker';
-import { useAppDispatch } from '../../hooks/redux';
-import QuantitiyCounter from '../common/QuantitiyCounter';
-import useIsSizeInCart from '../../hooks/useIsSizeInCart';
+import MainButton from '../../common/MainButton';
+import { SizesFilterState } from '../../../store/catalogFilterSlice';
+import { addToCart, CartItem } from '../../../store/cartSlice';
+import { Sneaker } from '../../../types/sneaker';
+import { useAppDispatch } from '../../../hooks/redux';
+import QuantitiyCounter from '../../common/QuantitiyCounter';
+import useIsSizeInCart from '../../../hooks/useIsSizeInCart';
 
 interface AddItemToCartProps {
   sizes: SizesFilterState[];

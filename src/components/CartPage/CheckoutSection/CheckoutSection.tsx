@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { CartItem, proceedCheckout } from '../../store/cartSlice';
-import MainButton from '../common/MainButton';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { CartItem, proceedCheckout } from '../../../store/cartSlice';
+import MainButton from '../../common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
 const CheckoutSection = ({ items }: { items: CartItem[] }) => {

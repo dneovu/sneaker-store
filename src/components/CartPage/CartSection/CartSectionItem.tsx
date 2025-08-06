@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import {
   CartItem,
   changeQuantity,
   removeFromCart,
-} from '../../store/cartSlice';
-import { fetchSneakerById } from '../../store/sneakersSlice';
-import priceFormat from '../../utils/priceFormat';
-import QuantitiyCounter from '../common/QuantitiyCounter';
+} from '../../../store/cartSlice';
+import { fetchSneakerById } from '../../../store/sneakersSlice';
+import priceFormat from '../../../utils/priceFormat';
+import QuantitiyCounter from '../../common/QuantitiyCounter';
 
 const CartSectionItem = ({ item }: { item: CartItem }) => {
   const [counter, setCounter] = useState(item.quantity);

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { fetchSneakerById } from '../store/sneakersSlice';
 import PageWrapper from '../components/wrappers/PageWrapper';
 import Header from '../components/common/Header';
-import ItemInfoSection from '../components/ItemPage/ItemInfoSection';
+import ItemInfoSection from '../components/ItemPage/ItemInfoSection/ItemInfoSection';
 import ItemSlider from '../components/ItemPage/ItemSlider';
 
 const ItemPage = () => {

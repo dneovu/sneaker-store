@@ -1,5 +1,5 @@
-import { SizesFilterState } from '../../store/catalogFilterSlice';
-import SizeButton from '../common/SizeButton';
+import { SizesFilterState } from '../../../store/catalogFilterSlice';
+import SizeButton from '../../common/SizeButton';
 
 interface ChooseSizeProps {
   sizes: SizesFilterState[];

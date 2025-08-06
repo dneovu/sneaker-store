@@ -1,4 +1,4 @@
-import { CartItem } from '../../store/cartSlice';
+import { CartItem } from '../../../store/cartSlice';
 import CartSectionItem from './CartSectionItem';
 
 const CartSection = ({ items }: { items: CartItem[] }) => {

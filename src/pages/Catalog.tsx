@@ -4,8 +4,8 @@ import { fetchSneakers } from '../store/sneakersSlice';
 import PageWrapper from '../components/wrappers/PageWrapper';
 import Header from '../components/common/Header';
 import ContentWrapper from '../components/wrappers/ContentWrapper';
-import CatalogSection from '../components/CatalogSection';
-import FilterSection from '../components/FilterSection/FilterSection';
+import CatalogSection from '../components/CatalogPage/CatalogSection';
+import FilterSection from '../components/CatalogPage/FilterSection/FilterSection';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
