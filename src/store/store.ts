@@ -4,6 +4,7 @@ import brandsReducer from '../store/brandsSlice';
 import sizesReducer from '../store/sizesSlice';
 import catalogFilterReducer from '../store/catalogFilterSlice';
 import priceRangeReducer from '../store/priceRangeSlice';
+import cartReducer from '../store/cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     sizes: sizesReducer,
     priceRange: priceRangeReducer,
     catalogFilter: catalogFilterReducer,
+    cart: cartReducer,
   },
 });
 

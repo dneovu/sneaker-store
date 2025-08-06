@@ -4,14 +4,14 @@ import { Sneaker } from '../types/sneaker';
 
 interface SneakerState {
   items: Sneaker[];
-  currentSneaker: Sneaker | null;
+  byId: Record<string, Sneaker>;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: SneakerState = {
   items: [],
-  currentSneaker: null,
+  byId: {},
   loading: false,
   error: null,
 };
@@ -47,10 +47,10 @@ const sneakersSlice = createSlice({
       .addCase(fetchSneakerById.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.currentSneaker = null;
       })
       .addCase(fetchSneakerById.fulfilled, (state, action) => {
-        state.currentSneaker = action.payload;
+        const sneaker = action.payload;
+        state.byId[sneaker.id] = sneaker;
         state.loading = false;
       })
       .addCase(fetchSneakerById.rejected, (state, action) => {

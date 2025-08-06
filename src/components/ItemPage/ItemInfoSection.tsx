@@ -10,7 +10,6 @@ interface ItemInfoSectionProps {
 
 const ItemInfoSection = ({ sneaker }: ItemInfoSectionProps) => {
   const [choosenSizeId, setChoosenSizeId] = useState<null | string>(null);
-
   const [sizesToChoose, setSizesToChoose] = useState<SizesFilterState[]>(
     Object.entries(sneaker.sizes).map(([size, quantity]) => ({
       id: size,
@@ -39,7 +38,11 @@ const ItemInfoSection = ({ sneaker }: ItemInfoSectionProps) => {
         <ChooseSize sizes={sizesToChoose} setChoosenSizeId={setChoosenSizeId} />
       </div>
       <div className="mt-16 lg:mt-30">
-        <AddItemToCart sizeId={choosenSizeId} sizes={sizesToChoose} />
+        <AddItemToCart
+          sizeId={choosenSizeId}
+          sizes={sizesToChoose}
+          sneaker={sneaker}
+        />
       </div>
     </section>
   );

@@ -10,18 +10,17 @@ import ItemSlider from '../components/ItemPage/ItemSlider';
 const ItemPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { currentSneaker, loading, error } = useAppSelector(
-    (state) => state.sneakers
-  );
+  const { byId, loading, error } = useAppSelector((state) => state.sneakers);
 
   useEffect(() => {
-    if (id) {
+    if (id && !byId[id]) {
       dispatch(fetchSneakerById(id));
     }
-  }, [id, dispatch]);
+  }, [id, dispatch, byId]);
 
   if (loading) return;
-  if (!currentSneaker) return error;
+  if (!id) return;
+  if (!byId[id]) return error;
 
   return (
     <PageWrapper>
@@ -29,10 +28,10 @@ const ItemPage = () => {
       <main className="lg:pr-8">
         <div className="flex w-full flex-wrap gap-8 lg:flex-nowrap lg:gap-16">
           <div className="flex-7/10">
-            <ItemSlider sneaker={currentSneaker} />
+            <ItemSlider sneaker={byId[id]} />
           </div>
           <div className="flex-3/10">
-            <ItemInfoSection sneaker={currentSneaker} />
+            <ItemInfoSection sneaker={byId[id]} />
           </div>
         </div>
       </main>

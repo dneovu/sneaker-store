@@ -15,7 +15,7 @@ const MainButton: React.FC<MainButtonProps> = ({
     <button
       disabled={isDisabled}
       onClick={onClick}
-      className={`bg-primary disabled:bg-background w-fit cursor-pointer px-6 py-2.5 font-bold text-white transition-all select-none hover:shadow-lg hover:brightness-110 disabled:cursor-auto disabled:hover:shadow-none disabled:hover:brightness-100 ${classname}`}
+      className={`bg-primary w-fit cursor-pointer px-6 py-2.5 font-bold text-white transition-all select-none hover:shadow-lg hover:brightness-110 disabled:cursor-auto disabled:bg-gray-300 disabled:hover:shadow-none disabled:hover:brightness-100 ${classname}`}
     >
       {text}
     </button>
