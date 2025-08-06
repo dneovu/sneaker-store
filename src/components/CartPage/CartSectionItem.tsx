@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { CartItem, changeQuantity } from '../../store/cartSlice';
+import {
+  CartItem,
+  changeQuantity,
+  removeFromCart,
+} from '../../store/cartSlice';
 import { fetchSneakerById } from '../../store/sneakersSlice';
 import priceFormat from '../../utils/priceFormat';
 import QuantitiyCounter from '../common/QuantitiyCounter';
@@ -20,6 +24,8 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
       if (counter > 1) {
         setCounter((prev) => prev - 1);
         dispatch(changeQuantity({ item, type: 'dec' }));
+      } else {
+        dispatch(removeFromCart(item.id));
       }
     } else {
       // check if there is more avaliable sneakers for this size
