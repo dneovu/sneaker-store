@@ -35,7 +35,9 @@ const AddItemToCart = ({ sizes, sizeId, sneaker }: AddItemToCartProps) => {
       size: Number(sizeId),
       quantity: counter,
     };
-    if (sneaker.id && sizeId && counter) dispatch(addToCart(cartItem));
+    if (!(sneaker.id && sizeId && counter)) return;
+
+    dispatch(addToCart(cartItem));
   };
 
   useEffect(() => {

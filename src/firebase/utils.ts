@@ -10,7 +10,6 @@ import {
 import { firebaseConfig } from './config';
 import { Sneaker } from '../types/sneaker';
 import { PriceRange } from '../types/meta';
-// import { MetaSneakers } from '../types/meta';
 
 const app = initializeApp(firebaseConfig);
 

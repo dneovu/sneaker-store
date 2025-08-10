@@ -13,6 +13,7 @@ import { removeUser, setUser } from './store/userSlice';
 function App() {
   const dispatch = useAppDispatch();
 
+  // subscribe to keep user state after page reload
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -21,7 +22,6 @@ function App() {
           setUser({
             id: user.uid,
             email: user.email,
-            token: user.refreshToken,
           })
         );
       } else {

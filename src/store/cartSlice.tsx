@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Sneaker } from '../types/sneaker';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/utils';
 
 export interface CartItem {
   id: Sneaker['id'];
@@ -19,10 +21,37 @@ const initialState: CartState = {
   error: null,
 };
 
+// fetch from firebase
+export const fetchCart = createAsyncThunk(
+  'cart/fetchCart',
+  async (userId: string) => {
+    const docRef = doc(db, 'carts', userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data().items as CartItem[];
+    }
+    return [];
+  }
+);
+
+// save to firebase
+export const saveCartToFirebase = createAsyncThunk(
+  'cart/saveCartToFirebase',
+  async ({ userId, items }: { userId: string; items: CartItem[] }) => {
+    const docRef = doc(db, 'carts', userId);
+    await setDoc(docRef, { items: items });
+    console.log(items);
+    return items;
+  }
+);
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    setCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+    },
     addToCart: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload);
     },
@@ -47,9 +76,27 @@ const cartSlice = createSlice({
       state.items = [];
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCart.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchCart.rejected, (state) => {
+        state.loading = false;
+      });
+  },
 });
 
-export const { addToCart, removeFromCart, changeQuantity, proceedCheckout } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  changeQuantity,
+  proceedCheckout,
+  setCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
