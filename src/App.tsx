@@ -5,8 +5,33 @@ import Profile from './pages/Profile';
 import ItemPage from './pages/ItemPage';
 import Catalog from './pages/Catalog';
 import CartSync from './components/CartSync';
+import { useAppDispatch } from './hooks/redux';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect } from 'react';
+import { removeUser, setUser } from './store/userSlice';
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            id: user.uid,
+            email: user.email,
+            token: user.refreshToken,
+          })
+        );
+      } else {
+        dispatch(removeUser());
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
+
   return (
     <>
       <CartSync />
