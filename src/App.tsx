@@ -17,21 +17,23 @@ function App() {
   // subscribe to keep user state after page reload
   useEffect(() => {
     const auth = getAuth();
+    let hasFetchedOrders = false;
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(
-          setUser({
-            id: user.uid,
-            email: user.email,
-          })
-        );
-        dispatch(fetchOrders(user.uid));
+        dispatch(setUser({ id: user.uid, email: user.email }));
+
+        if (!hasFetchedOrders) {
+          dispatch(fetchOrders(user.uid));
+          hasFetchedOrders = true;
+        }
       } else {
         dispatch(removeUser());
+        hasFetchedOrders = false;
       }
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, [dispatch]);
 
   return (

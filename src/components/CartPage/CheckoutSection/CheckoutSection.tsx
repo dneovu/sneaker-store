@@ -5,7 +5,7 @@ import {
   proceedCheckout,
   saveCartToFirebase,
 } from '../../../store/cartSlice';
-import { createOrder } from '../../../store/orderSlice';
+import { createOrder, fetchOrders } from '../../../store/orderSlice';
 import MainButton from '../../common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
@@ -22,13 +22,31 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
 
   if (!subTotal) return;
 
-  const handleCheckout = () => {
-    if (isAuth) {
-      dispatch(createOrder({ userId: id ?? '', items: items }));
-      dispatch(saveCartToFirebase({ userId: id ?? '', items: [] }));
+  const handleCheckout = async () => {
+    if (!isAuth) {
+      alert('Вы должны войти в аккаунт');
+      return;
     }
-    dispatch(proceedCheckout());
-    alert('Заказ оформлен');
+
+    try {
+      const resultAction = await dispatch(
+        createOrder({ userId: id ?? '', items })
+      );
+
+      if (createOrder.fulfilled.match(resultAction)) {
+        await dispatch(saveCartToFirebase({ userId: id ?? '', items: [] }));
+
+        await dispatch(fetchOrders(id ?? ''));
+
+        dispatch(proceedCheckout());
+        alert('Заказ оформлен');
+      } else {
+        console.error();
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Произошла ошибка при оформлении заказа');
+    }
   };
 
   return (
