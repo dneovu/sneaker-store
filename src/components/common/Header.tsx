@@ -3,9 +3,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 import CartLogo from '../../assets/header/shopping-cart.svg?react';
 import ProfileLogo from '../../assets/header/profile.svg?react';
 import CompanyLogoLink from './CompanyLogoLink';
+import { useAppSelector } from '../../hooks/redux';
 
 const Header = () => {
   const { pathname } = useLocation();
+  const cartNumber = useAppSelector((state) => state.cart.items.length);
+  const orderNumber = useAppSelector((state) => state.orders.items.length);
 
   const routeFlags = {
     isCatalogPage: pathname === '/catalog',
@@ -29,15 +32,25 @@ const Header = () => {
       </div>
 
       <nav className="flex items-center gap-8">
-        <NavLink to="/cart" aria-label="Корзина">
-          <CartLogo
-            className={`fill-none transition-all duration-100 ${routeFlags.isCartPage ? 'stroke-primary' : 'hover:stroke-primary stroke-black'}`}
-          />
+        <NavLink
+          to="/cart"
+          aria-label="Корзина"
+          className={`relative transition-all duration-100 ${routeFlags.isCartPage ? 'text-primary stroke-primary' : 'hover:text-primary hover:stroke-primary stroke-black text-black'}`}
+        >
+          <CartLogo className="fill-none" />
+          <span className="absolute bottom-3 left-7 font-bold">
+            {cartNumber > 0 ? cartNumber : ''}
+          </span>
         </NavLink>
-        <NavLink to="/profile" aria-label="Профиль">
-          <ProfileLogo
-            className={`fill-none transition-all duration-100 ${routeFlags.isProfilePage ? 'stroke-primary' : 'hover:stroke-primary stroke-black'}`}
-          />
+        <NavLink
+          to="/profile"
+          aria-label="Профиль"
+          className={`relative transition-all duration-100 ${routeFlags.isProfilePage ? 'text-primary stroke-primary' : 'hover:text-primary hover:stroke-primary stroke-black text-black'}`}
+        >
+          <ProfileLogo className="fill-none" />
+          <span className="absolute bottom-3 left-6 font-bold">
+            {orderNumber > 0 ? orderNumber : ''}
+          </span>
         </NavLink>
       </nav>
     </header>

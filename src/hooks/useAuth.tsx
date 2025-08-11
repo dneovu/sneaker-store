@@ -10,6 +10,7 @@ import { useAppDispatch } from '../hooks/redux';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/utils';
 import { setCart } from '../store/cartSlice';
+import { clearOrders } from '../store/orderSlice';
 
 const useAuth = () => {
   const { id, email } = useAppSelector((state) => state.user);
@@ -70,6 +71,7 @@ const useAuth = () => {
       .then(() => {
         dispatch(removeUser());
         dispatch(setCart([]));
+        dispatch(clearOrders());
       })
       .catch((error) => {
         console.error(error);
