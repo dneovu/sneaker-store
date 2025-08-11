@@ -3,10 +3,16 @@ import { CartItem } from './cartSlice';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/utils';
 
+export interface OrderSneaker extends CartItem {
+  price: number;
+  brand: string;
+  model: string;
+}
 export interface OrderItem {
   id: string;
-  items: CartItem[];
-  createdAt: Date;
+  items: OrderSneaker[];
+  total: number;
+  createdAt: string;
 }
 
 interface OrderState {
@@ -23,10 +29,19 @@ const initialState: OrderState = {
 
 export const createOrder = createAsyncThunk(
   'cart/createOrder',
-  async ({ userId, items }: { userId: string; items: CartItem[] }) => {
+  async ({
+    userId,
+    items,
+    total,
+  }: {
+    userId: string;
+    items: OrderSneaker[];
+    total: number;
+  }) => {
     const ordersRef = collection(db, 'orders', userId, 'userOrders');
     const docRef = await addDoc(ordersRef, {
       items,
+      total,
       createdAt: new Date().toISOString(),
     });
 
@@ -43,14 +58,16 @@ export const fetchOrders = createAsyncThunk(
 
     const orders: OrderItem[] = snapshot.docs.map((doc) => {
       const data = doc.data() as {
-        items: CartItem[];
+        items: OrderSneaker[];
+        total: number;
         createdAt: string;
       };
 
       return {
         id: doc.id,
         items: data.items,
-        createdAt: new Date(data.createdAt),
+        total: data.total,
+        createdAt: data.createdAt,
       };
     });
 

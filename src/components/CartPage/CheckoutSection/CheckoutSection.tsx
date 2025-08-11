@@ -5,7 +5,11 @@ import {
   proceedCheckout,
   saveCartToFirebase,
 } from '../../../store/cartSlice';
-import { createOrder, fetchOrders } from '../../../store/orderSlice';
+import {
+  createOrder,
+  fetchOrders,
+  OrderSneaker,
+} from '../../../store/orderSlice';
 import MainButton from '../../common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
@@ -14,10 +18,21 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
   const dispatch = useAppDispatch();
   const { isAuth, id } = useAuth();
 
-  const subTotal = items.reduce((total, item) => {
-    const price = sneakersById[item.id]?.price * item?.quantity;
-    return total + price;
-  }, 0);
+  let subTotal = 0;
+
+  const sneakersToOrder = items.map((item) => {
+    const sneakerFromFirebase = sneakersById[item.id];
+    // subtotal for all sneakers in the cart
+    subTotal += item.quantity * sneakerFromFirebase?.price;
+
+    return {
+      ...item,
+      price: sneakerFromFirebase?.price,
+      brand: sneakerFromFirebase?.brand,
+      model: sneakerFromFirebase?.model,
+    } as OrderSneaker;
+  });
+
   const delivery = 0;
 
   if (!subTotal) return;
@@ -30,7 +45,11 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
 
     try {
       const resultAction = await dispatch(
-        createOrder({ userId: id ?? '', items })
+        createOrder({
+          userId: id ?? '',
+          items: sneakersToOrder,
+          total: subTotal,
+        })
       );
 
       if (createOrder.fulfilled.match(resultAction)) {
