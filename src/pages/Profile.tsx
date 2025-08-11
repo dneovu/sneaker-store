@@ -1,5 +1,6 @@
 import Header from '../components/common/Header';
 import Login from '../components/UserPage/Login';
+import Orders from '../components/UserPage/Orders';
 import SignUp from '../components/UserPage/SignUp';
 import ContentWrapper from '../components/wrappers/ContentWrapper';
 import PageWrapper from '../components/wrappers/PageWrapper';
@@ -15,7 +16,14 @@ const Profile = () => {
         <p>{email}</p>
         <Login />
         <SignUp />
-        {isAuth ? <button onClick={() => logout()}>log out</button> : ''}
+        {isAuth ? (
+          <div>
+            <button onClick={() => logout()}>log out</button>
+            <Orders />
+          </div>
+        ) : (
+          ''
+        )}
       </ContentWrapper>
     </PageWrapper>
   );

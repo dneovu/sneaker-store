@@ -9,6 +9,7 @@ import { useAppDispatch } from './hooks/redux';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 import { removeUser, setUser } from './store/userSlice';
+import { fetchOrders } from './store/orderSlice';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ function App() {
             email: user.email,
           })
         );
+        dispatch(fetchOrders(user.uid));
       } else {
         dispatch(removeUser());
       }

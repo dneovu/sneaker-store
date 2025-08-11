@@ -1,11 +1,18 @@
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { CartItem, proceedCheckout } from '../../../store/cartSlice';
+import useAuth from '../../../hooks/useAuth';
+import {
+  CartItem,
+  proceedCheckout,
+  saveCartToFirebase,
+} from '../../../store/cartSlice';
+import { createOrder } from '../../../store/orderSlice';
 import MainButton from '../../common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
 const CheckoutSection = ({ items }: { items: CartItem[] }) => {
   const sneakersById = useAppSelector((state) => state.sneakers.byId);
   const dispatch = useAppDispatch();
+  const { isAuth, id } = useAuth();
 
   const subTotal = items.reduce((total, item) => {
     const price = sneakersById[item.id]?.price * item?.quantity;
@@ -16,6 +23,10 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
   if (!subTotal) return;
 
   const handleCheckout = () => {
+    if (isAuth) {
+      dispatch(createOrder({ userId: id ?? '', items: items }));
+      dispatch(saveCartToFirebase({ userId: id ?? '', items: [] }));
+    }
     dispatch(proceedCheckout());
     alert('Заказ оформлен');
   };
