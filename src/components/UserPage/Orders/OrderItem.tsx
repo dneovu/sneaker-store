@@ -9,7 +9,7 @@ const OrderItemComponent = ({
   index: number;
 }) => {
   return (
-    <div className="border-background flex flex-wrap gap-8 rounded-lg border p-4 md:gap-12 xl:gap-24">
+    <div className="flex flex-wrap gap-8 rounded-lg border border-gray-300 p-4 md:gap-12 xl:gap-24">
       <p className="w-24 font-medium">Заказ №{index + 1}</p>
       <div className="flex flex-col">
         <span className="text-secondary">Дата</span>

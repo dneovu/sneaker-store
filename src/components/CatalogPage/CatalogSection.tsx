@@ -37,7 +37,7 @@ const CatalogSection = () => {
   return (
     <section className="w-full">
       <h1 className="text-lg font-bold md:text-2xl">Все кроссовки</h1>
-      <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-x-1 gap-y-4 md:mt-8 md:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] md:gap-y-16">
+      <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] justify-center justify-items-center gap-x-1 gap-y-4 md:mt-8 md:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] md:gap-y-16">
         {filteredData.map((sneaker) => (
           <SneakerCard key={sneaker.id} item={sneaker} />
         ))}

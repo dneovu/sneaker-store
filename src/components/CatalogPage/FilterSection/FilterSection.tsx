@@ -50,17 +50,17 @@ const FilterSection = () => {
   if (loadingBrands || loadingSizes || loadingPrices) return;
 
   return (
-    <section className="w-[302px] lg:block">
+    <section>
       <div className="border-b border-gray-300 pb-6">
-        <h2 className="mb-4 text-sm font-bold md:text-lg">Бренды</h2>
+        <h2 className="mb-4 font-bold md:text-lg">Бренды</h2>
         <BrandsFilter filterBrands={filterBrands} />
       </div>
       <div className="border-b border-gray-300 py-6">
-        <h2 className="mb-4 text-sm font-bold md:text-lg">Стоимость</h2>
+        <h2 className="mb-4 font-bold md:text-lg">Стоимость</h2>
         <RangeInput priceRange={priceRange} />
       </div>
       <div className="pt-6">
-        <h2 className="mb-4 text-sm font-bold md:text-lg">Размеры</h2>
+        <h2 className="mb-4 font-bold md:text-lg">Размеры</h2>
         <SizeFilter filterSizes={filterSizes} />
       </div>
     </section>

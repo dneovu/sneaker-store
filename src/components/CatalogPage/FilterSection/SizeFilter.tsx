@@ -13,7 +13,7 @@ const SizeFilter = ({ filterSizes }: SizeFilterProps) => {
   const dispatch = useAppDispatch();
 
   return (
-    <ul className="grid grid-cols-4 gap-3">
+    <ul className="flex flex-wrap gap-3">
       {filterSizes.map((size: SizesFilterState) => (
         <li className="space-y-3.5 space-x-3" key={size.id}>
           <SizeButton
