@@ -4,8 +4,10 @@ import CartLogo from '../../assets/header/shopping-cart.svg?react';
 import ProfileLogo from '../../assets/header/profile.svg?react';
 import CompanyLogoLink from './CompanyLogoLink';
 import { useAppSelector } from '../../hooks/redux';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+  const { isAuth } = useAuth();
   const { pathname } = useLocation();
   const cartNumber = useAppSelector((state) => state.cart.items.length);
   const orderNumber = useAppSelector((state) => state.orders.items.length);
@@ -13,7 +15,7 @@ const Header = () => {
   const routeFlags = {
     isCatalogPage: pathname === '/catalog',
     isCartPage: pathname === '/cart',
-    isProfilePage: pathname === '/profile',
+    isProfilePage: pathname.includes('/user'),
     isHomePage: pathname === '/',
   };
 
@@ -43,7 +45,7 @@ const Header = () => {
           </span>
         </NavLink>
         <NavLink
-          to="/profile"
+          to={isAuth ? '/user/orders' : '/user/profile'}
           aria-label="Профиль"
           className={`relative transition-all duration-100 ${routeFlags.isProfilePage ? 'text-primary stroke-primary' : 'hover:text-primary hover:stroke-primary stroke-black text-black'}`}
         >

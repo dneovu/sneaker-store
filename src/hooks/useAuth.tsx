@@ -11,12 +11,14 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/utils';
 import { setCart } from '../store/cartSlice';
 import { clearOrders } from '../store/orderSlice';
+import { useState } from 'react';
 
 const useAuth = () => {
   const { id, email } = useAppSelector((state) => state.user);
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const auth = getAuth();
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   const signup = async (email: string, password: string) => {
     try {
@@ -80,6 +82,8 @@ const useAuth = () => {
 
   return {
     isAuth: !!email,
+    isAuthLoading,
+    setIsAuthLoading,
     id,
     email,
     logout,
