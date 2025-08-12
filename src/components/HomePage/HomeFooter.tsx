@@ -14,7 +14,7 @@ const HomeFooter = () => {
         мелким деталям. Мы знаем, что обувь говорит громче слов, поэтому мы
         освоили науку хороших кроссовок.
       </p>
-      <div className="text-secondary mt-14 flex flex-wrap justify-between gap-6">
+      <div className="text-secondary mt-6 flex flex-wrap justify-between gap-6">
         <div className="flex gap-3">
           <p>Не упускайте шанса получить выгодные предложения:</p>
           <nav aria-label="Social media links">

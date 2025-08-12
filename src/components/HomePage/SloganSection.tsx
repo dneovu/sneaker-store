@@ -6,7 +6,7 @@ const SloganSection = () => {
   return (
     <section className="flex flex-col items-center">
       <div className="mb-46 flex max-w-96 flex-col items-center gap-4">
-        <h1 className="text-center text-4xl font-bold">
+        <h1 className="text-center text-2xl font-bold md:text-4xl">
           Лучшая обувь для лучших мест.
         </h1>
         <p className="text-secondary">здесь вы найдете подходящую пару!</p>
@@ -14,7 +14,7 @@ const SloganSection = () => {
 
       <div className="grid w-full grid-cols-1 place-items-center text-2xl font-medium md:grid-cols-3 md:items-start md:gap-0">
         <div className="relative flex w-full flex-col items-center lg:mr-27">
-          <CurratedIcon className="absolute -translate-x-10 -translate-y-39 lg:translate-x-30 lg:-translate-y-32" />
+          <CurratedIcon className="absolute -translate-y-39 md:-translate-x-10 lg:translate-x-30 lg:-translate-y-32" />
           <p>
             Тщательно <br /> отобранные
           </p>
@@ -26,7 +26,7 @@ const SloganSection = () => {
         </div>
 
         <div className="relative mt-34 flex flex-col items-center md:mt-0">
-          <BuyLatestIcon className="absolute -translate-x-10 -translate-y-26 lg:translate-x-31 lg:-translate-y-15" />
+          <BuyLatestIcon className="absolute -translate-y-26 md:-translate-x-10 lg:translate-x-31 lg:-translate-y-15" />
           <p>
             Покупай новое <br /> и определяй тренды
           </p>

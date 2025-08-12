@@ -27,7 +27,7 @@ const PromoSlider = ({ items }: { items: Sneaker[] }) => {
         </div>
       </div>
 
-      <div className="mt-6 flex justify-end space-x-5">
+      <div className="mt-6 flex justify-center space-x-5 md:justify-end">
         {promoItems.map((sneaker, index) => (
           <button
             key={sneaker.id}
@@ -48,7 +48,7 @@ const PromoSlider = ({ items }: { items: Sneaker[] }) => {
       </div>
 
       {/* блок над слайдером */}
-      <div className="invisible absolute flex w-fit max-w-1/2 translate-x-35 -translate-y-5 items-center gap-14 bg-white px-8 py-4 shadow-lg xl:visible">
+      <div className="absolute hidden w-fit max-w-1/2 translate-x-35 -translate-y-5 items-center gap-14 bg-white px-8 py-4 shadow-lg xl:flex">
         <div className="flex gap-8">
           <Adidas />
           <Nike />

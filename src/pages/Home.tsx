@@ -9,7 +9,6 @@ import HomeFooter from '../components/HomePage/HomeFooter';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { fetchSneakers } from '../store/sneakersSlice';
-import { addSneakers } from '../firebase/utils';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -32,15 +31,14 @@ const Home = () => {
         <PromoSlider items={items} />
       </HomePromoWrapper>
       <ContentWrapper>
-        <div className="mt-8 xl:mt-24">
+        <div className="mt-4 md:mt-8 xl:mt-24">
           <NewArrivalsSection />
         </div>
-        <div className="mt-24">
+        <div className="mt-8 md:mt-16">
           <SloganSection />
         </div>
       </ContentWrapper>
-      <ContentWrapper isMain={false} className="mt-32">
-        <button onClick={addSneakers}>Add sneakers</button>
+      <ContentWrapper isMain={false} className="mt-8 md:mt-16">
         <HomeFooter />
       </ContentWrapper>
     </PageWrapper>
