@@ -4,7 +4,7 @@ import { SizesFilterState } from '../../../store/catalogFilterSlice';
 import { addToCart, CartItem } from '../../../store/cartSlice';
 import { Sneaker } from '../../../types/sneaker';
 import { useAppDispatch } from '../../../hooks/redux';
-import QuantitiyCounter from '../../common/QuantitiyCounter';
+import QuantityCounter from '../../common/QuantityCounter';
 import useIsSizeInCart from '../../../hooks/useIsSizeInCart';
 
 interface AddItemToCartProps {
@@ -17,12 +17,12 @@ const AddItemToCart = ({ sizes, sizeId, sneaker }: AddItemToCartProps) => {
   const [counter, setCounter] = useState(0);
   const dispatch = useAppDispatch();
   const isInCart = useIsSizeInCart(sizeId, sneaker);
+  const sizeObj = sizes.find((size) => size.id === sizeId);
 
   const handleCounter = (action: 'dec' | 'inc') => {
     if (action === 'dec') {
       if (counter > 1) setCounter((prev) => prev - 1);
     } else {
-      const sizeObj = sizes.find((size) => size.id === sizeId);
       if (sizeObj) {
         setCounter((prev) => Math.min(sizeObj.value, prev + 1));
       }
@@ -46,7 +46,12 @@ const AddItemToCart = ({ sizes, sizeId, sneaker }: AddItemToCartProps) => {
 
   return (
     <div className="flex gap-8">
-      <QuantitiyCounter quantity={counter} onClick={handleCounter} />
+      <QuantityCounter
+        quantity={counter}
+        min={1}
+        max={sizeObj?.value}
+        onClick={handleCounter}
+      />
 
       <MainButton
         text={isInCart ? 'Уже в корзине' : 'В корзину'}

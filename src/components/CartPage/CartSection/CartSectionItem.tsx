@@ -7,7 +7,7 @@ import {
 } from '../../../store/cartSlice';
 import { fetchSneakerById } from '../../../store/sneakersSlice';
 import priceFormat from '../../../utils/priceFormat';
-import QuantitiyCounter from '../../common/QuantitiyCounter';
+import QuantityCounter from '../../common/QuantityCounter';
 import CartSectionItemSkeleton from './CartSectionItemSkeleton';
 
 const CartSectionItem = ({ item }: { item: CartItem }) => {
@@ -65,7 +65,11 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
       </div>
       <div className="flex w-full items-center justify-between md:w-2/5">
         <div>
-          <QuantitiyCounter quantity={counter} onClick={handleCounter} />
+          <QuantityCounter
+            quantity={counter}
+            max={sneaker.sizes[item.size]}
+            onClick={handleCounter}
+          />
         </div>
         <p className="font-medium">
           {priceFormat(item.quantity * sneaker.price)}
