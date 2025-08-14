@@ -8,19 +8,17 @@ import CartSync from './components/CartSync';
 import { useAppDispatch } from './hooks/redux';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
-import { removeUser, setUser } from './store/userSlice';
+import { removeUser, setIsAuthLoading, setUser } from './store/userSlice';
 import { fetchOrders } from './store/orderSlice';
-import useAuth from './hooks/useAuth';
 import UserProfile from './components/UserPage/Profile/UserProfile';
 import Orders from './components/UserPage/Orders/Orders';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
-  const { setIsAuthLoading } = useAuth();
   const dispatch = useAppDispatch();
 
   // subscribe to keep user state after page reload
   useEffect(() => {
-    setIsAuthLoading(true);
     const auth = getAuth();
     let hasFetchedOrders = false;
 
@@ -36,14 +34,15 @@ function App() {
         dispatch(removeUser());
         hasFetchedOrders = false;
       }
-      setIsAuthLoading(false);
+
+      dispatch(setIsAuthLoading(false));
     });
 
     return unsubscribe;
   }, [dispatch]);
 
   return (
-    <>
+    <SkeletonTheme baseColor="#999999" highlightColor="#888888">
       <CartSync />
       <Routes>
         <Route index element={<Home />} />
@@ -56,7 +55,7 @@ function App() {
         </Route>
         <Route path="*" element={<div>404</div>} />
       </Routes>
-    </>
+    </SkeletonTheme>
   );
 }
 

@@ -12,12 +12,14 @@ export interface CartItem {
 interface CartState {
   items: CartItem[];
   loading: boolean;
+  loaded: boolean;
   error: string | null;
 }
 
 const initialState: CartState = {
   items: JSON.parse(localStorage.getItem('cart') || '[]'),
   loading: false,
+  loaded: false,
   error: null,
 };
 
@@ -84,9 +86,11 @@ const cartSlice = createSlice({
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
+        state.loaded = true;
       })
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
+        state.loaded = true;
       });
   },
 });

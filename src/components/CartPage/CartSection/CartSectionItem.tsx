@@ -8,6 +8,7 @@ import {
 import { fetchSneakerById } from '../../../store/sneakersSlice';
 import priceFormat from '../../../utils/priceFormat';
 import QuantitiyCounter from '../../common/QuantitiyCounter';
+import CartSectionItemSkeleton from './CartSectionItemSkeleton';
 
 const CartSectionItem = ({ item }: { item: CartItem }) => {
   const [counter, setCounter] = useState(item.quantity);
@@ -36,7 +37,7 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
     }
   };
 
-  if (!sneaker) return 'Не удалось загрузить';
+  if (!sneaker) return <CartSectionItemSkeleton />;
 
   return (
     <div className="bg-background relative flex flex-col items-baseline justify-baseline gap-5 px-4 py-3 md:flex-row md:items-center md:justify-between md:gap-0 md:px-8 md:py-6">

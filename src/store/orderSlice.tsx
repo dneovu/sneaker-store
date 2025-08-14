@@ -18,12 +18,14 @@ export interface OrderItem {
 interface OrderState {
   items: OrderItem[];
   loading: boolean;
+  loaded: boolean;
   error: string | null;
 }
 
 const initialState: OrderState = {
   items: [],
   loading: false,
+  loaded: false,
   error: null,
 };
 
@@ -92,10 +94,12 @@ export const orderSlice = createSlice({
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false;
+        state.loaded = true;
         state.items = action.payload;
       })
       .addCase(fetchOrders.rejected, (state) => {
         state.loading = false;
+        state.loaded = true;
       });
   },
 });

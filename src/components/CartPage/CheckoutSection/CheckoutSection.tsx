@@ -1,10 +1,7 @@
+import Skeleton from 'react-loading-skeleton';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import useAuth from '../../../hooks/useAuth';
-import {
-  CartItem,
-  proceedCheckout,
-  saveCartToFirebase,
-} from '../../../store/cartSlice';
+import { proceedCheckout, saveCartToFirebase } from '../../../store/cartSlice';
 import {
   createOrder,
   fetchOrders,
@@ -13,10 +10,13 @@ import {
 import MainButton from '../../common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
-const CheckoutSection = ({ items }: { items: CartItem[] }) => {
+const CheckoutSection = () => {
+  const { items } = useAppSelector((state) => state.cart);
   const sneakersById = useAppSelector((state) => state.sneakers.byId);
   const dispatch = useAppDispatch();
   const { isAuth, id } = useAuth();
+
+  if (!items.length) return;
 
   let subTotal = 0;
 
@@ -34,8 +34,6 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
   });
 
   const delivery = 0;
-
-  if (!subTotal) return;
 
   const handleCheckout = async () => {
     if (!isAuth) {
@@ -68,18 +66,28 @@ const CheckoutSection = ({ items }: { items: CartItem[] }) => {
     }
   };
 
+  const PriceRow = ({ text, price }: { text: string; price: number }) =>
+    subTotal ? (
+      <CheckoutSectionPriceInfo text={text} price={price} />
+    ) : (
+      <Skeleton />
+    );
+
   return (
     <section>
       <div className="mb-8">
         <h2 className="font-medium">О заказе</h2>
       </div>
+
       <div className="space-y-3 border-b border-gray-300 pb-5">
-        <CheckoutSectionPriceInfo text="Стоимость" price={subTotal} />
-        <CheckoutSectionPriceInfo text="Доставка" price={delivery} />
+        <PriceRow text="Стоимость" price={subTotal} />
+        <PriceRow text="Доставка" price={delivery} />
       </div>
+
       <div className="mt-5 mb-16">
-        <CheckoutSectionPriceInfo text="Итого" price={subTotal + delivery} />
+        <PriceRow text="Итого" price={subTotal + delivery} />
       </div>
+
       <MainButton text="Перейти к оформлению" onClick={handleCheckout} />
     </section>
   );

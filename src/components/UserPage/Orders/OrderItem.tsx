@@ -25,7 +25,10 @@ const OrderItemComponent = ({
       <div className="flex flex-col">
         <span className="text-secondary">Состав</span>
         {item.items.map((orderSneakers) => (
-          <span className="font-medium" key={orderSneakers.id}>
+          <span
+            className="font-medium"
+            key={orderSneakers.id + orderSneakers.model + orderSneakers.size}
+          >
             {orderSneakers.brand} {orderSneakers.model} — {orderSneakers.size}×
             {orderSneakers.quantity}
           </span>
