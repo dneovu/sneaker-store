@@ -4,9 +4,10 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from 'firebase/auth';
 import { setUser, removeUser, setIsAuthLoading } from '../store/userSlice';
-import { setCart } from '../store/cartSlice';
+import { fetchCart, setCart } from '../store/cartSlice';
 import { clearOrders } from '../store/orderSlice';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/utils';
@@ -17,6 +18,26 @@ const useAuth = () => {
   const dispatch = useAppDispatch();
   const auth = getAuth();
 
+  const onAuthAction = async (user: User) => {
+    dispatch(
+      setUser({
+        id: user.uid,
+        email: user.email,
+      })
+    );
+
+    const cartRef = doc(db, 'carts', user.uid);
+    const cartSnap = await getDoc(cartRef);
+
+    if (cartSnap.exists()) {
+      dispatch(setCart(cartSnap.data().items));
+    } else {
+      await setDoc(cartRef, { items: items });
+    }
+
+    await dispatch(fetchCart(user.uid));
+  };
+
   const signup = async (email: string, password: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -26,12 +47,7 @@ const useAuth = () => {
       );
       const user = userCredential.user;
 
-      dispatch(
-        setUser({
-          id: user.uid,
-          email: user.email,
-        })
-      );
+      onAuthAction(user);
     } catch (error) {
       console.error(error);
     }
@@ -46,21 +62,7 @@ const useAuth = () => {
       );
       const user = userCredential.user;
 
-      dispatch(
-        setUser({
-          id: user.uid,
-          email: user.email,
-        })
-      );
-
-      const cartRef = doc(db, 'carts', user.uid);
-      const cartSnap = await getDoc(cartRef);
-
-      if (cartSnap.exists()) {
-        dispatch(setCart(cartSnap.data().items));
-      } else {
-        await setDoc(cartRef, { items: items });
-      }
+      onAuthAction(user);
     } catch (error) {
       console.error(error);
     }
