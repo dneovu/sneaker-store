@@ -5,6 +5,7 @@ import { proceedCheckout, saveCartToFirebase } from '@/store/cartSlice';
 import { createOrder, fetchOrders, OrderSneaker } from '@/store/orderSlice';
 import MainButton from '@/components/common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
+import notify from '@/utils/notify';
 
 const CheckoutSection = () => {
   const { items } = useAppSelector((state) => state.cart);
@@ -33,7 +34,7 @@ const CheckoutSection = () => {
 
   const handleCheckout = async () => {
     if (!isAuth) {
-      alert('Вы должны войти в аккаунт');
+      notify.error('Вы должны войти в аккаунт');
       return;
     }
 
@@ -52,13 +53,13 @@ const CheckoutSection = () => {
         await dispatch(fetchOrders(id ?? ''));
 
         dispatch(proceedCheckout());
-        alert('Заказ оформлен');
+        notify.success('Заказ оформлен!');
       } else {
         console.error();
       }
     } catch (err) {
       console.error(err);
-      alert('Произошла ошибка при оформлении заказа');
+      notify.error('Произошла ошибка при оформлении заказа');
     }
   };
 

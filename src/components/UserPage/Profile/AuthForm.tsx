@@ -1,5 +1,8 @@
 import { FormEvent, useState } from 'react';
 import useAuth from '@/hooks/useAuth';
+import notify from '@/utils/notify';
+import { FirebaseError } from 'firebase/app';
+import firebaseErrorMessages from '@/constants/firebaseErrors';
 
 const AuthForm = () => {
   const { login, signup } = useAuth();
@@ -22,8 +25,14 @@ const AuthForm = () => {
       } else {
         await signup(email, password);
       }
-    } catch (err) {
-      console.error(err);
+    } catch (err: unknown) {
+      let message = `Ошибка при ${authType === 'login' ? 'входе' : 'регистрации'}`;
+
+      if (err instanceof FirebaseError) {
+        message = firebaseErrorMessages[err.code] || message;
+      }
+
+      notify.error(message);
     } finally {
       setLoading(false);
     }
@@ -80,6 +89,7 @@ const AuthForm = () => {
                 name="password"
                 type="password"
                 value={password}
+                minLength={6}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="current-password"
