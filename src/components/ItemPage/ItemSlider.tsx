@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Sneaker } from '@/types/sneaker';
 import priceFormat from '@/utils/priceFormat';
-import Arrow from '@/assets/itemarrow.svg?react';
+import Arrow from '@/assets/itemSlider/itemarrow.svg?react';
 
 const ItemSlider = ({ sneaker }: { sneaker: Sneaker }) => {
   const [activeIndex, setActiveIndex] = useState(0);

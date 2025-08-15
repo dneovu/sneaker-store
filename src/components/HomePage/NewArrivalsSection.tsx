@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import SneakerCard from '@/components/common/SneakerCard';
-import NextArrow from '@/assets/next.svg?react';
+import NextArrow from '@/assets/common/next.svg?react';
 import { useAppSelector } from '@/hooks/redux';
 
 const NewArrivalsSection = () => {

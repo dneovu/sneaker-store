@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import PromoSliderItem from './PromoSliderItem';
 
-import Adidas from '@/assets/adidas.svg?react';
-import Nike from '@/assets/nike.svg?react';
-import Vans from '@/assets/vans.svg?react';
-import NextArrow from '@/assets/next.svg?react';
+import Adidas from '@/assets/promoSliderBrands/adidas.svg?react';
+import Nike from '@/assets/promoSliderBrands/nike.svg?react';
+import Vans from '@/assets/promoSliderBrands/vans.svg?react';
+import NextArrow from '@/assets/common/next.svg?react';
 import { NavLink } from 'react-router-dom';
 import { Sneaker } from '@/types/sneaker';
 
@@ -47,7 +47,7 @@ const PromoSlider = ({ items }: { items: Sneaker[] }) => {
         ))}
       </div>
 
-      {/* блок над слайдером */}
+      {/* блок под слайдером */}
       <div className="absolute hidden w-fit max-w-1/2 translate-x-35 -translate-y-5 items-center gap-14 bg-white px-8 py-4 shadow-lg xl:flex">
         <div className="flex gap-8">
           <Adidas />
