@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { CartItem } from './cartSlice';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/utils';
+import { db } from '@/firebase/utils';
 
 export interface OrderSneaker extends CartItem {
   price: number;

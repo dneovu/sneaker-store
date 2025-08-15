@@ -6,11 +6,11 @@ import {
   signOut,
   User,
 } from 'firebase/auth';
-import { setUser, removeUser, setIsAuthLoading } from '../store/userSlice';
-import { fetchCart, setCart } from '../store/cartSlice';
-import { clearOrders } from '../store/orderSlice';
+import { setUser, removeUser, setIsAuthLoading } from '@/store/userSlice';
+import { fetchCart, setCart } from '@/store/cartSlice';
+import { clearOrders } from '@/store/orderSlice';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/utils';
+import { db } from '@/firebase/utils';
 
 const useAuth = () => {
   const { id, email, isAuthLoading } = useAppSelector((state) => state.user);

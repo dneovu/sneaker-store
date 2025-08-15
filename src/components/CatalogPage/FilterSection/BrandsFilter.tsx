@@ -1,8 +1,8 @@
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch } from '@/hooks/redux';
 import {
   BrandsFilterState,
   changeChoosenBrand,
-} from '../../../store/catalogFilterSlice';
+} from '@/store/catalogFilterSlice';
 
 interface BrandsFilterProps {
   filterBrands: BrandsFilterState[];

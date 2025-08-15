@@ -1,5 +1,5 @@
 import Skeleton from 'react-loading-skeleton';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import AuthForm from './AuthForm';
 
 const UserProfile = () => {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Sneaker } from '../../../types/sneaker';
-import priceFormat from '../../../utils/priceFormat';
-import MainButton from '../../common/MainButton';
+import { Sneaker } from '@/types/sneaker';
+import priceFormat from '@/utils/priceFormat';
+import MainButton from '@/components/common/MainButton';
 
 const PromoSliderItem = ({ item }: { item: Sneaker }) => {
   return (

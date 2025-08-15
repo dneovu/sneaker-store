@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { useEffect } from 'react';
-import { fetchSneakerById } from '../store/sneakersSlice';
-import PageWrapper from '../components/wrappers/PageWrapper';
-import Header from '../components/common/Header';
-import ItemInfoSection from '../components/ItemPage/ItemInfoSection/ItemInfoSection';
-import ItemSlider from '../components/ItemPage/ItemSlider';
+import { fetchSneakerById } from '@/store/sneakersSlice';
+import PageWrapper from '@/components/wrappers/PageWrapper';
+import Header from '@/components/common/Header';
+import ItemInfoSection from '@/components/ItemPage/ItemInfoSection/ItemInfoSection';
+import ItemSlider from '@/components/ItemPage/ItemSlider';
 
 const ItemPage = () => {
   const { id } = useParams();

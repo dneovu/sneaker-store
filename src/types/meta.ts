@@ -13,10 +13,3 @@ export type PriceRange = {
   min: number;
   max: number;
 };
-
-// export type MetaSneakers = {
-//   id: string;
-//   brands: Brand[];
-//   sizes: Size[];
-//   price: Price;
-// };

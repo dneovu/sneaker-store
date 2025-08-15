@@ -1,10 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom';
 
-import CartLogo from '../../assets/header/shopping-cart.svg?react';
-import ProfileLogo from '../../assets/header/profile.svg?react';
+import CartLogo from '@/assets/header/shopping-cart.svg?react';
+import ProfileLogo from '@/assets/header/profile.svg?react';
 import CompanyLogoLink from './CompanyLogoLink';
-import { useAppSelector } from '../../hooks/redux';
-import useAuth from '../../hooks/useAuth';
+import { useAppSelector } from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
 
 const Header = () => {
   const { isAuth } = useAuth();

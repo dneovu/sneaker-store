@@ -1,4 +1,4 @@
-import { Sneaker } from '../types/sneaker';
+import { Sneaker } from '@/types/sneaker';
 import { useAppSelector } from './redux';
 
 const useIsSizeInCart = (sizeId: null | string, sneaker: Sneaker) => {

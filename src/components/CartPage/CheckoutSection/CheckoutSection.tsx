@@ -1,13 +1,9 @@
 import Skeleton from 'react-loading-skeleton';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import useAuth from '../../../hooks/useAuth';
-import { proceedCheckout, saveCartToFirebase } from '../../../store/cartSlice';
-import {
-  createOrder,
-  fetchOrders,
-  OrderSneaker,
-} from '../../../store/orderSlice';
-import MainButton from '../../common/MainButton';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
+import { proceedCheckout, saveCartToFirebase } from '@/store/cartSlice';
+import { createOrder, fetchOrders, OrderSneaker } from '@/store/orderSlice';
+import MainButton from '@/components/common/MainButton';
 import CheckoutSectionPriceInfo from './CheckoutSectionPriceInfo';
 
 const CheckoutSection = () => {

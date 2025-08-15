@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sneakerReducer from '../store/sneakersSlice';
-import brandsReducer from '../store/brandsSlice';
-import sizesReducer from '../store/sizesSlice';
-import catalogFilterReducer from '../store/catalogFilterSlice';
-import priceRangeReducer from '../store/priceRangeSlice';
-import cartReducer from '../store/cartSlice';
-import userReducer from '../store/userSlice';
-import ordersReducer from '../store/orderSlice';
+import sneakerReducer from '@/store/sneakersSlice';
+import brandsReducer from '@/store/brandsSlice';
+import sizesReducer from '@/store/sizesSlice';
+import catalogFilterReducer from '@/store/catalogFilterSlice';
+import priceRangeReducer from '@/store/priceRangeSlice';
+import cartReducer from '@/store/cartSlice';
+import userReducer from '@/store/userSlice';
+import ordersReducer from '@/store/orderSlice';
 
 export const store = configureStore({
   reducer: {

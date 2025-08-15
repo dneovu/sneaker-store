@@ -1,8 +1,8 @@
-import CartSection from '../components/CartPage/CartSection/CartSection';
-import CheckoutSection from '../components/CartPage/CheckoutSection/CheckoutSection';
-import Header from '../components/common/Header';
-import ContentWrapper from '../components/wrappers/ContentWrapper';
-import PageWrapper from '../components/wrappers/PageWrapper';
+import CartSection from '@/components/CartPage/CartSection/CartSection';
+import CheckoutSection from '@/components/CartPage/CheckoutSection/CheckoutSection';
+import Header from '@/components/common/Header';
+import ContentWrapper from '@/components/wrappers/ContentWrapper';
+import PageWrapper from '@/components/wrappers/PageWrapper';
 
 const Cart = () => {
   return (

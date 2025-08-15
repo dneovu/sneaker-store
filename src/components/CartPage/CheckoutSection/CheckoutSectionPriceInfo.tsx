@@ -1,4 +1,4 @@
-import priceFormat from '../../../utils/priceFormat';
+import priceFormat from '@/utils/priceFormat';
 
 const CheckoutSectionPriceInfo = ({
   text,

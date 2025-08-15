@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllCollectionByName, getSneakerById } from '../firebase/utils';
-import { Sneaker } from '../types/sneaker';
+import { getAllCollectionByName, getSneakerById } from '@/firebase/utils';
+import { Sneaker } from '@/types/sneaker';
 
 interface SneakerState {
   items: Sneaker[];

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import PromoSliderItem from './PromoSliderItem';
 
-import Adidas from '../../../assets/adidas.svg?react';
-import Nike from '../../../assets/nike.svg?react';
-import Vans from '../../../assets/vans.svg?react';
-import NextArrow from '../../../assets/next.svg?react';
+import Adidas from '@/assets/adidas.svg?react';
+import Nike from '@/assets/nike.svg?react';
+import Vans from '@/assets/vans.svg?react';
+import NextArrow from '@/assets/next.svg?react';
 import { NavLink } from 'react-router-dom';
-import { Sneaker } from '../../../types/sneaker';
+import { Sneaker } from '@/types/sneaker';
 
 const PromoSlider = ({ items }: { items: Sneaker[] }) => {
   const [activeIndex, setActiveIndex] = useState(0);

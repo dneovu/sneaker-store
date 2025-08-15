@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { fetchBrands } from '../../../store/brandsSlice';
-import { fetchSizes } from '../../../store/sizesSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchBrands } from '@/store/brandsSlice';
+import { fetchSizes } from '@/store/sizesSlice';
 import {
   changePrice,
   createSelectedBrands,
   createSelectedSizes,
-} from '../../../store/catalogFilterSlice';
+} from '@/store/catalogFilterSlice';
 import RangeInput from './RangeInput';
-import { fetchPriceRange } from '../../../store/priceRangeSlice';
+import { fetchPriceRange } from '@/store/priceRangeSlice';
 import BrandsFilter from './BrandsFilter';
 import SizeFilter from './SizeFilter';
 

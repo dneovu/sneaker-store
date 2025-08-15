@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import CompanyLogo from '../../assets/logo.svg?react';
+import CompanyLogo from '@/assets/logo.svg?react';
 
 const CompanyLogoLink = () => {
   return (

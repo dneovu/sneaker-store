@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Sneaker } from '../../../types/sneaker';
+import { Sneaker } from '@/types/sneaker';
 import AddItemToCart from './AddItemToCart';
 import ChooseSize from './ChooseSize';
-import { SizesFilterState } from '../../../store/catalogFilterSlice';
+import { SizesFilterState } from '@/store/catalogFilterSlice';
 
 interface ItemInfoSectionProps {
   sneaker: Sneaker;

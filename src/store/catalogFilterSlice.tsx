@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Brand, Size, PriceRange } from '../types/meta';
+import { Brand, Size, PriceRange } from '@/types/meta';
 
 export type BrandsFilterState = Brand & {
   isSelected: boolean;

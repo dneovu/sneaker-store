@@ -1,9 +1,9 @@
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch } from '@/hooks/redux';
 import {
   changeChoosenSize,
   SizesFilterState,
-} from '../../../store/catalogFilterSlice';
-import SizeButton from '../../common/SizeButton';
+} from '@/store/catalogFilterSlice';
+import SizeButton from '@/components/common/SizeButton';
 
 interface SizeFilterProps {
   filterSizes: SizesFilterState[];

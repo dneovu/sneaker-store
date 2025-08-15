@@ -1,5 +1,5 @@
-import { OrderItem } from '../../../store/orderSlice';
-import priceFormat from '../../../utils/priceFormat';
+import { OrderItem } from '@/store/orderSlice';
+import priceFormat from '@/utils/priceFormat';
 
 const OrderItemComponent = ({
   item,

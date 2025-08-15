@@ -1,6 +1,6 @@
-import OriginalIcon from '../../assets/original.svg?react';
-import BuyLatestIcon from '../../assets/buy-latest.svg?react';
-import CurratedIcon from '../../assets/currated-unique.svg?react';
+import OriginalIcon from '@/assets/original.svg?react';
+import BuyLatestIcon from '@/assets/buy-latest.svg?react';
+import CurratedIcon from '@/assets/currated-unique.svg?react';
 
 const SloganSection = () => {
   return (

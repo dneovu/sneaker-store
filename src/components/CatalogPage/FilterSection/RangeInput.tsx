@@ -1,8 +1,8 @@
 import { Slider, ConfigProvider } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { changePrice } from '../../../store/catalogFilterSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { changePrice } from '@/store/catalogFilterSlice';
 import { useState } from 'react';
-import { PriceRange } from '../../../types/meta';
+import { PriceRange } from '@/types/meta';
 
 interface RangeInputProps {
   priceRange: PriceRange | null;

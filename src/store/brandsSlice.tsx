@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllCollectionByName } from '../firebase/utils';
-import { Brand } from '../types/meta';
+import { getAllCollectionByName } from '@/firebase/utils';
+import { Brand } from '@/types/meta';
 
 interface BrandState {
   items: Brand[];

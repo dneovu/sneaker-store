@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPriceRange } from '../firebase/utils';
-import { PriceRange } from '../types/meta';
+import { getPriceRange } from '@/firebase/utils';
+import { PriceRange } from '@/types/meta';
 
 interface PriceRangeState {
   items: PriceRange | null;

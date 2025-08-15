@@ -8,8 +8,8 @@ import {
   getDoc,
 } from 'firebase/firestore';
 import { firebaseConfig } from './config';
-import { Sneaker } from '../types/sneaker';
-import { PriceRange } from '../types/meta';
+import { Sneaker } from '@/types/sneaker';
+import { PriceRange } from '@/types/meta';
 
 const app = initializeApp(firebaseConfig);
 

@@ -1,8 +1,8 @@
-import CompanyLogoLink from '../common/CompanyLogoLink';
+import CompanyLogoLink from '@/components/common/CompanyLogoLink';
 
-import FacebookIcon from '../../assets/footer/facebook.svg?react';
-import InstagramIcon from '../../assets/footer/instagram.svg?react';
-import TwitterIcon from '../../assets/footer/twitter.svg?react';
+import FacebookIcon from '@/assets/footer/facebook.svg?react';
+import InstagramIcon from '@./assets/footer/instagram.svg?react';
+import TwitterIcon from '@/assets/footer/twitter.svg?react';
 
 const HomeFooter = () => {
   return (

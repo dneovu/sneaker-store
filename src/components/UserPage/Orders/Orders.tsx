@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../hooks/redux';
-import useAuth from '../../../hooks/useAuth';
+import { useAppSelector } from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
 import OrderItem from './OrderItem';
 import OrderItemSkeleton from './OrderItemSkeleton';
 

@@ -1,5 +1,5 @@
-import MinusIcon from '../../assets/minus.svg?react';
-import PlusIcon from '../../assets/plus.svg?react';
+import MinusIcon from '@/assets/minus.svg?react';
+import PlusIcon from '@./assets/plus.svg?react';
 
 interface QuantityCounterProps {
   quantity: number;

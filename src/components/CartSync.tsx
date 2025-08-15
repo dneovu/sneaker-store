@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import useAuth from '../hooks/useAuth';
-import { fetchCart, saveCartToFirebase, setCart } from '../store/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import useAuth from '@/hooks/useAuth';
+import { fetchCart, saveCartToFirebase, setCart } from '@/store/cartSlice';
 
 export default function CartSync() {
   const { items } = useAppSelector((state) => state.cart);

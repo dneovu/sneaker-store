@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Sneaker } from '../types/sneaker';
+import { Sneaker } from '@/types/sneaker';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/utils';
+import { db } from '@/firebase/utils';
 
 export interface CartItem {
   id: Sneaker['id'];

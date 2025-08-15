@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import Header from '../components/common/Header';
-import ContentWrapper from '../components/wrappers/ContentWrapper';
-import PageWrapper from '../components/wrappers/PageWrapper';
+import Header from '@/components/common/Header';
+import ContentWrapper from '@/components/wrappers/ContentWrapper';
+import PageWrapper from '@/components/wrappers/PageWrapper';
 
 const User = () => {
   return (
