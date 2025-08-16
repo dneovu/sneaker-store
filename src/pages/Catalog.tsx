@@ -6,6 +6,7 @@ import Header from '@/components/common/Header';
 import ContentWrapper from '@/components/wrappers/ContentWrapper';
 import CatalogSection from '@/components/CatalogPage/CatalogSection';
 import FilterSection from '@/components/CatalogPage/FilterSection/FilterSection';
+import filterImg from '@/assets/catalogSection/filter.png';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
@@ -22,15 +23,14 @@ const Catalog = () => {
 
   return (
     <PageWrapper>
+      <button
+        className="fixed right-4 bottom-4 flex size-12 items-center justify-center rounded-full bg-black lg:hidden"
+        onClick={() => setIsFilterOpen(!isFilterOpen)}
+      >
+        <img src={filterImg} className="size-8" alt="Filter" />
+      </button>
       <Header />
       <ContentWrapper>
-        <button
-          className="absolute right-0 mr-8 text-lg font-bold lg:hidden"
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-        >
-          Фильтры
-        </button>
-
         <div className="flex gap-16 xl:mt-2">
           <div className="hidden w-[302px] lg:block">
             <FilterSection />
@@ -40,20 +40,20 @@ const Catalog = () => {
         </div>
 
         {/* mobile */}
-        {isFilterOpen && (
-          <div className="fixed inset-0 z-50 flex flex-col bg-white p-4 lg:hidden">
-            <button
-              className="absolute mt-2 self-end text-2xl font-bold"
-              onClick={() => setIsFilterOpen(false)}
-            >
-              ×
-            </button>
+        <div
+          className={`inset-0 z-50 flex flex-col bg-white p-4 ${isFilterOpen ? 'fixed' : 'hidden'} lg:hidden`}
+        >
+          <button
+            className="absolute mt-2 mr-2 self-end text-2xl font-bold"
+            onClick={() => setIsFilterOpen(false)}
+          >
+            ×
+          </button>
 
-            <div className="mt-4 overflow-y-auto px-4">
-              <FilterSection />
-            </div>
+          <div className="mt-4 overflow-y-auto px-4">
+            <FilterSection />
           </div>
-        )}
+        </div>
       </ContentWrapper>
     </PageWrapper>
   );

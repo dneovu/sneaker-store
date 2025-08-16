@@ -5,12 +5,13 @@ import { useAppSelector } from '@/hooks/redux';
 
 const NewArrivalsSection = () => {
   const { items } = useAppSelector((state) => state.sneakers);
+  const newArrivals = items.filter((item) => item.isNew);
 
   return (
     <section className="space-y-8">
       <h3 className="text-xl font-bold">Новые поступления</h3>
       <div className="mb-8 grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] justify-center justify-items-center gap-x-1 gap-y-4 md:grid-cols-[repeat(auto-fill,minmax(19rem,1fr))] md:gap-y-12">
-        {items.map((sneaker) => (
+        {newArrivals.map((sneaker) => (
           <SneakerCard key={sneaker.id} item={sneaker} />
         ))}
       </div>

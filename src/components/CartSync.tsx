@@ -15,7 +15,7 @@ export default function CartSync() {
   useEffect(() => {
     if (isAuth) {
       dispatch(fetchCart(id ?? ''));
-      console.log('fetch');
+      localStorage.setItem('cart', JSON.stringify([]));
     } else {
       const localCart = localStorage.getItem('cart');
       if (localCart) {
@@ -26,8 +26,6 @@ export default function CartSync() {
 
   useEffect(() => {
     if (isAuth) {
-      console.log('save fb cart');
-
       dispatch(
         saveCartToFirebase({
           userId: id ?? '',

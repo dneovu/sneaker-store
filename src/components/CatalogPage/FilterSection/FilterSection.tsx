@@ -50,7 +50,7 @@ const FilterSection = () => {
   if (loadingBrands || loadingSizes || loadingPrices) return;
 
   return (
-    <section>
+    <section className="sticky top-8">
       <div className="border-b border-gray-300 pb-6">
         <h2 className="mb-4 font-bold md:text-lg">Бренды</h2>
         <BrandsFilter filterBrands={filterBrands} />

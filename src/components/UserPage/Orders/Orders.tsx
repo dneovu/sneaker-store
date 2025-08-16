@@ -2,10 +2,19 @@ import { useAppSelector } from '@/hooks/redux';
 import useAuth from '@/hooks/useAuth';
 import OrderItem from './OrderItem';
 import OrderItemSkeleton from './OrderItemSkeleton';
+import { useMemo } from 'react';
 
 const Orders = () => {
   const { isAuth, isAuthLoading } = useAuth();
   const { items, loading, loaded } = useAppSelector((state) => state.orders);
+
+  const sortedOrdersByDate = useMemo(
+    () =>
+      [...items].sort(
+        (a, b) => Number(new Date(b.createdAt)) - Number(new Date(a.createdAt))
+      ),
+    [items]
+  );
 
   if (!isAuth && !isAuthLoading)
     return <p className="font-medium">Войдите, чтобы увидеть заказы</p>;
@@ -26,8 +35,12 @@ const Orders = () => {
 
   return (
     <div className="flex flex-col gap-3">
-      {items.map((order, i) => (
-        <OrderItem item={order} index={i} key={order.id} />
+      {sortedOrdersByDate.map((order, i) => (
+        <OrderItem
+          item={order}
+          index={sortedOrdersByDate.length - 1 - i}
+          key={order.id}
+        />
       ))}
     </div>
   );
