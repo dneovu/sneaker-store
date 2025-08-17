@@ -1,20 +1,27 @@
 import CompanyLogoLink from '@/components/common/CompanyLogoLink';
-
 import FacebookIcon from '@/assets/footer/facebook.svg?react';
 import InstagramIcon from '@/assets/footer/instagram.svg?react';
 import TwitterIcon from '@/assets/footer/twitter.svg?react';
+import { useLocation } from 'react-router-dom';
 
-const HomeFooter = () => {
+const Footer = () => {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+
   return (
-    <footer className="border-t-1 border-gray-300 pt-16">
-      <CompanyLogoLink />
-      <p className="text-secondary mt-8 max-w-[580px]">
-        Мы не просто продаем обувь, мы продаем воспоминания и предметы
-        коллекционирования. Мы собираем лучшее из лучшего, уделяя внимание всем
-        мелким деталям. Мы знаем, что обувь говорит громче слов, поэтому мы
-        освоили науку хороших кроссовок.
-      </p>
-      <div className="text-secondary mt-6 flex flex-wrap justify-between gap-6">
+    <footer className="mt-auto border-t-1 border-gray-300 pt-16">
+      {isHomePage && (
+        <>
+          <CompanyLogoLink />
+          <p className="text-secondary my-8 max-w-[580px]">
+            Мы не просто продаем обувь, мы продаем воспоминания и предметы
+            коллекционирования. Мы собираем лучшее из лучшего, уделяя внимание
+            всем мелким деталям. Мы знаем, что обувь говорит громче слов,
+            поэтому мы освоили науку хороших кроссовок.
+          </p>
+        </>
+      )}
+      <div className="text-secondary flex flex-wrap justify-between gap-6">
         <div className="flex gap-3">
           <p>Не упускайте шанса получить выгодные предложения:</p>
           <nav aria-label="Social media links">
@@ -62,4 +69,4 @@ const HomeFooter = () => {
   );
 };
 
-export default HomeFooter;
+export default Footer;

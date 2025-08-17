@@ -5,10 +5,10 @@ import HomePromoWrapper from '@/components/wrappers/HomePromoWrapper';
 import PromoSlider from '@/components/HomePage/PromoSlider/PromoSlider';
 import NewArrivalsSection from '@/components/HomePage/NewArrivalsSection';
 import SloganSection from '@/components/HomePage/SloganSection';
-import HomeFooter from '@/components/HomePage/HomeFooter';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchSneakers } from '@/store/sneakersSlice';
+import Footer from '@/components/common/Footer';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ const Home = () => {
         </div>
       </ContentWrapper>
       <ContentWrapper isMain={false} className="mt-8 md:mt-16">
-        <HomeFooter />
+        <Footer />
       </ContentWrapper>
     </PageWrapper>
   );

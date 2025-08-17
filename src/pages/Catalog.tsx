@@ -7,6 +7,7 @@ import ContentWrapper from '@/components/wrappers/ContentWrapper';
 import CatalogSection from '@/components/CatalogPage/CatalogSection';
 import FilterSection from '@/components/CatalogPage/FilterSection/FilterSection';
 import filterImg from '@/assets/catalogSection/filter.png';
+import Footer from '@/components/common/Footer';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
@@ -35,11 +36,15 @@ const Catalog = () => {
           <div className="hidden w-[302px] lg:block">
             <FilterSection />
           </div>
-
-          <CatalogSection />
+          <div>
+            <div className="mb-16">
+              <CatalogSection />
+            </div>
+            <Footer />
+          </div>
         </div>
 
-        {/* mobile */}
+        {/* mobile filter */}
         <div
           className={`inset-0 z-50 flex flex-col bg-white p-4 ${isFilterOpen ? 'fixed' : 'hidden'} lg:hidden`}
         >
