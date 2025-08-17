@@ -22,7 +22,7 @@ const CartSectionItem = ({ item }: { item: CartItem }) => {
         setCounter((prev) => prev - 1);
         dispatch(changeQuantity({ item, type: 'dec' }));
       } else {
-        dispatch(removeFromCart(item.id));
+        dispatch(removeFromCart(item));
       }
     } else {
       // check if there is more avaliable sneakers for this size
