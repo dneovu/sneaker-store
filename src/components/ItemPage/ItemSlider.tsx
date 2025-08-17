@@ -23,7 +23,7 @@ const ItemSlider = ({ sneaker }: { sneaker: Sneaker }) => {
         <p className="text-secondary text-sm font-medium lg:text-[1.125rem]">
           {priceFormat(sneaker.price)}
         </p>
-        {images.length > 1 ? (
+        {images.length > 1 && (
           <div className="absolute top-100 hidden w-full justify-between pr-30 xl:flex">
             <button
               className="cursor-pointer"
@@ -38,7 +38,7 @@ const ItemSlider = ({ sneaker }: { sneaker: Sneaker }) => {
               <Arrow />
             </button>
           </div>
-        ) : null}
+        )}
       </div>
 
       {/* slider wrapper */}

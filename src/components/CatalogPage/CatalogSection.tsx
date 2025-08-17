@@ -32,7 +32,6 @@ const CatalogSection = () => {
   };
 
   const filteredData = items.filter((sneaker) => shouldDisplay(sneaker));
-  console.log(filteredData);
 
   return (
     <section className="w-full">

@@ -42,7 +42,6 @@ export const saveCartToFirebase = createAsyncThunk(
   async ({ userId, items }: { userId: string; items: CartItem[] }) => {
     const docRef = doc(db, 'carts', userId);
     await setDoc(docRef, { items: items });
-    console.log(items);
     return items;
   }
 );

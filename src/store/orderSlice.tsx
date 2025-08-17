@@ -47,7 +47,6 @@ export const createOrder = createAsyncThunk(
       createdAt: new Date().toISOString(),
     });
 
-    console.log(docRef.id);
     return { id: docRef.id, items };
   }
 );
@@ -72,8 +71,6 @@ export const fetchOrders = createAsyncThunk(
         createdAt: data.createdAt,
       };
     });
-
-    console.log(orders);
 
     return orders;
   }
